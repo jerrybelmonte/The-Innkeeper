@@ -6,6 +6,7 @@ Program that makes it easy to record data and print reports regarding the financ
 * [Problem Statement](https://github.com/jerrybelmonte/Innkeeper-System#problem-statement)
 * [Vision Statement](https://github.com/jerrybelmonte/Innkeeper-System#vision-statement)
 * [Use Case & Scenarios](https://github.com/jerrybelmonte/Inkeeper-System#use-case-and-scenarios)
+* [UML Diagrams](https://github.com/jerrybelmonte/Innkeeper-System#uml-diagrams)
   
 ## Request For Proposal
 John Nguyen is a small-time landlord: He owns an apartment building with 20 units. He wants us to write a program that will make it easier for him to record data and print reports regarding the finances of the apartment building. If we can agree with John on payment, schedule, and the overall purpose of the program, we've completed the inception part of the development process.  
@@ -112,3 +113,6 @@ __Scenario:__ John would like to see a list of his sum of all rents by over 20 u
 __Exception:__ If John sees a blank input, he must go back to the menu and re-input all the new values.  
 __Postcondition:__ John returns to the menu.  
 __NonFunctional:__ Can’t input new records while the list is being displayed.  
+
+## UML Diagrams
+![alt text](https://github.com/jerrybelmonte/Innkeeper-System/blob/master/Images/UseCaseUML.jpg?raw=true)

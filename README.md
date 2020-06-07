@@ -5,7 +5,7 @@ Program that makes it easy to record data and print reports regarding the financ
 * [Request For Proposal](https://github.com/jerrybelmonte/Innkeeper-System#request-for-proposal)
 * [Problem Statement](https://github.com/jerrybelmonte/Innkeeper-System#problem-statement)
 * [Vision Statement](https://github.com/jerrybelmonte/Innkeeper-System#vision-statement)
-* [Use Case & Scenarios](https://github.com/jerrybelmonte/Inkeeper-System#use-case-and-scenarios)
+* [Use Case and Scenarios](https://github.com/jerrybelmonte/Inkeeper-System#use-case-and-scenarios)
 * [UML Diagrams](https://github.com/jerrybelmonte/Innkeeper-System#uml-diagrams)
   
 ## Request For Proposal

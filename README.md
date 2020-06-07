@@ -19,3 +19,9 @@ The Expense Record records outgoing payments. It has columns for date, the payee
 The Annual Report uses data from the Rental Income Record and Expense Record to summarize how much money came in and how much went out during the year. All the rents are summed and the result is displayed. The expenses are summed and displayed by the budget category, which makes it easy to see, for example, how much was spent on repairs during the year. Finally, expenses are subtracted from income to show how much money John made (or lost) during the year.  
   
 John tells us that he wants the program to pretty much duplicate what he's currently doing on the paper forms. He wants to be able to enter data about tenants, rents, and expenses, and display the various reports.  
+
+## Problem Statement
+John finds it tedious to calculate the rental income and expenses by hand for over 20 housing units. This problem affects John because John unnecessarily spends too much time on making records by hand when he could use that time for other tasks. A successful solution to John’s problem and tedious work would be a way to easily track specific records, save John time from paper-bookkeeping, better overall organization, a method for faster calculations, and to make data easily transferable (mobile).  
+
+## Vision Statement
+A product has been made for John. A way for easier, faster, and more organized bookkeeping with less room for error. This product is called The Innkeeper, a bookkeeping software program. The benefits of The Innkeeper is that there is no longer a need for paper records, the software does all the hard work and number crunching for him and that it is very simple and straightforward, ultimately saving John a lot of time. Unlike our competitor, Excel, our product offers a more optimized way to complete bookkeeping tasks. As opposed to more broad data entry software programs, we offer an easier and more specified approach.  

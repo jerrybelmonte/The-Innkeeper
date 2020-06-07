@@ -115,4 +115,7 @@ __Postcondition:__ John returns to the menu.
 __NonFunctional:__ Can’t input new records while the list is being displayed.  
 
 ## UML Diagrams
+### Use Case Diagram
 ![alt text](https://github.com/jerrybelmonte/Innkeeper-System/blob/master/Images/UseCaseUML.jpg?raw=true)
+### Overall Class Diagram
+![alt text](https://github.com/jerrybelmonte/Innkeeper-System/blob/master/Images/OverallClassDiagram.jpg?raw=true)

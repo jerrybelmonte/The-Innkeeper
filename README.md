@@ -2,12 +2,46 @@
 Program that makes it easy to record data and print reports regarding the finances an apartment building.  
 
 ## Table of Contents
-* [Request For Proposal](https://github.com/jerrybelmonte/Innkeeper-System#request-for-proposal)
-* [Problem Statement](https://github.com/jerrybelmonte/Innkeeper-System#problem-statement)
-* [Vision Statement](https://github.com/jerrybelmonte/Innkeeper-System#vision-statement)
-* [Use Case & Scenarios](https://github.com/jerrybelmonte/Innkeeper-System#use-case-and-scenarios)
-* [UML Diagrams](https://github.com/jerrybelmonte/Innkeeper-System#uml-diagrams)
+* [Getting Started](#getting-started)
+* [Request For Proposal](#request-for-proposal)
+* [Problem Statement](#problem-statement)
+* [Vision Statement](#vision-statement)
+* [Use Case & Scenarios](#use-case-and-scenarios)
+* [UML Diagrams](#uml-diagrams)
   
+## Getting Started
+### Prerequisites
+You will need to have git installed on your computer. From the terminal, navigate to your local git repository folder.
+```
+$ cd Documents/[your local git directory folder]/
+```
+Clone the remote repository to your local git repository folder.
+```
+$ git clone https://github.com/jerrybelmonte/Innkeeper-System.git
+```
+Verify that the process was successful. Check and make sure you have all the project files in your local git repository.
+### Installing
+Open up Eclipse IDE and change from the default window to the Git repository window.
+```
+Window > Show View > Git Repositories > Add an existing local Git repository to this view
+```
+Navigate to the directory where you cloned the remote repository and add the local git repository.
+```
+Browse.. > Directory: /Inkeeper-System.git > Add > Selectect Inkeeper-System
+```
+Import the git project to your Eclipse IDE workspace.
+```
+Right-click the Inkeeper-System Working Tree folder > Import Projects > Import Source > Finish
+```
+Configure the build path for the project, need to configure build path to run the unit tests.
+```
+Right-click the Inkeeper-System project > Build Path > Configure Build Path > Libraries Tab > Classpath > Add Library > JUnit > JUnit5 Library > Finish
+```
+Once you configure the modulepath, you should be able to run the TenatTest file in Eclipse.
+```
+Inkeeper-System > src > test > Right-click the TenantTest.java file > Run As > 1 JUnit Test
+```
+
 ## Request For Proposal
 John Nguyen is a small-time landlord: He owns an apartment building with 20 units. He wants us to write a program that will make it easier for him to record data and print reports regarding the finances of the apartment building. If we can agree with John on payment, schedule, and the overall purpose of the program, we've completed the inception part of the development process.  
   

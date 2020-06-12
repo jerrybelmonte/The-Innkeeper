@@ -3,6 +3,7 @@ Program that makes it easy to record data and print reports regarding the financ
 
 ## Table of Contents
 * [Getting Started](#getting-started)
+* [How To Add Your Code](#how-to-add-your-code)
 * [Request For Proposal](#request-for-proposal)
 * [Problem Statement](#problem-statement)
 * [Vision Statement](#vision-statement)
@@ -41,6 +42,56 @@ Once you configure the modulepath, you should be able to run the TenatTest file 
 ```
 Inkeeper-System > src > test > Right-click the TenantTest.java file > Run As > 1 JUnit Test
 ```
+
+## How To Add Your Code
+
+* Create a new branch for your feature with 
+```
+git checkout -b <[feature-name]>
+``` 
+* Check your local branch and the remote branches with 
+```
+git branch -a
+```
+* Track a remote branch on the GitHub repository 
+```
+git branch <[branch-name]> origin/<[branch-name]>
+```
+* To check if your branch is configured to push upstream to a remote branch
+```
+cat .git/config
+```
+* Go to the newly created branch if necessary with 
+```
+git checkout <new-or-existing-branch-name>
+```
+* If you wish to view the 10 most recent commits from all the current branches
+```
+git log --graph --all --oneline -10
+```
+* To check and see the commits from all the collaborators
+```
+git shortlog
+```
+* Write/add your code changes to git staging before making a commit
+```
+git add .
+``` 
+* After your changes are in the git staging area, commit your changes and add a short message, i.e. "_If applied, this commit will_...**Fix bug when calculating annual summary** "
+```
+git commit -m "<short-but-descriptive-commit-message>"
+```
+* Before you `$ git push` to the master branch, make sure to `$ git fetch` to get the latest updates from master, this helps avoid potential merge conflicts.
+
+
+##### REALLY IMPORTANT: **`$ git pull origin master` into your own branch, to fix any conflicts before you push to the remote (to GitHub)**
+
+
+* Then `$ git commit` any of the conflicts you fixed (if you had them)
+* Once there are no more conflicts, `$ git push origin <your-branch-name>`
+* Go to the Github page (in your browser) and see the comment that says: "you recently .... do you want to create a Pull Request?"
+* Select to merge into the master-branch, write what you changed/made in the message, etc.
+* Create the Pull Request
 
 ## Request For Proposal
 John Nguyen is a small-time landlord: He owns an apartment building with 20 units. He wants us to write a program that will make it easier for him to record data and print reports regarding the finances of the apartment building. If we can agree with John on payment, schedule, and the overall purpose of the program, we've completed the inception part of the development process.  

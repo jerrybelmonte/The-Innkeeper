@@ -2,37 +2,37 @@ package main;
 
 public class MainMenuController {
 
-	public void inputTenant() {
+	public static void inputTenant() {
 		//TODO: method to input a new tenant
 	}
 	
 	
-	public void printTenantList() {
+	public static void printTenantList() {
 		//TODO: method to print tenant list
 	}
 	
 	
-	public void inputIncomeRecord() {
+	public static void inputIncomeRecord() {
 		//TODO: method to input a rental record
 	}
 	
 	
-	public void printIncomeReport() {
+	public static void printIncomeReport() {
 		//TODO: method to print the income report
 	}
 	
 	
-	public void inputExpenseRecord() {
+	public static void inputExpenseRecord() {
 		//TODO: method to input an expense
 	}
 	
 	
-	public void printExpenseReport() {
+	public static void printExpenseReport() {
 		//TODO: method to print the expense report
 	}
 	
 	
-	public void printAnnualSummary() {
+	public static void printAnnualSummary() {
 		//TODO: method to print the annual summary
 	}
 	

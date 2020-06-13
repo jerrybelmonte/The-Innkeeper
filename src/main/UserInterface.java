@@ -5,21 +5,40 @@ import java.util.Scanner;
 public class UserInterface {
 
 	public static void main(String[] args) {
-        // read input from the user
 		Scanner input = new Scanner(System.in);	
-		
+	
 		startTheProgram();
-		logIn(input);
-		mainMenu(input);					
+		
+		String password = "123";
+		logIn(input, password);
+							
 	}
 	
 	public static void startTheProgram() {
-		System.out.println("*** Welcome to INNKEEPER system! ***\n\n");
+		System.out.println("*** Welcome to INNKEEPER system! ***\n");
 				
 	}
 	
-	public static void logIn(Scanner input) {
+	public static void logIn(Scanner input, String password) {
+		int count = 1;
+		String temp = "";
 		System.out.println("Please enter your password to Log In: ");
+		temp = input.next();
+		
+		while (count < 3 && !temp.equals(password)) {
+			System.out.println("Wrong Password!!\n" 
+					+ "Please re-enter your password: ");
+			temp = input.next();
+			count++;
+		}
+		
+		if (temp.equals(password)) {
+			System.out.println("Success!!");
+			mainMenu(input);
+		}
+		else {
+			System.out.println("Failed Credential Verification!! Goodbye!");
+		}
 	}
 	
 	public static void mainMenu(Scanner input) {
@@ -63,13 +82,13 @@ public class UserInterface {
 	public static void inputChoice(String select, Scanner input) {
 		switch (select) {
 			case "1":
-				;
+				MainMenuController.inputTenant();
 				break;
 			case "2":
-				;
+				MainMenuController.inputIncomeRecord();
 				break;
 			case "3":
-				;
+				MainMenuController.inputExpenseRecord();
 				break;	
 			case "0":
 				mainMenu(input);
@@ -95,16 +114,16 @@ public class UserInterface {
 	public static void displayChoice(String select, Scanner input) {
 		switch (select) {
 			case "1":
-				;
+				MainMenuController.printTenantList();
 				break;
 			case "2":
-				;
+				MainMenuController.printIncomeReport();
 				break;
 			case "3":
-				;
+				MainMenuController.printExpenseReport();
 				break;	
 			case "4":
-				;
+				MainMenuController.printAnnualSummary();
 				break;	
 			case "0":
 				mainMenu(input);
@@ -114,5 +133,4 @@ public class UserInterface {
 				displayMenu(input);
 		}
 	}
-
 }

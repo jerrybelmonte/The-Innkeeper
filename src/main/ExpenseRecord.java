@@ -51,8 +51,7 @@ public class ExpenseRecord {
 
 
 	public String recordExpense() {
-		return "Month: " + month + " Day: " + day + " Category: " + category + " Expense Amount: " +
-				amount;
+		return "Month: " + month + " Day: " + day + " Category: " + category + " Expense Amount: " + amount;
 	}
 	
 }

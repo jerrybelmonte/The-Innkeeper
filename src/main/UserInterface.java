@@ -3,23 +3,31 @@ package main;
 import java.util.Scanner;
 
 public class UserInterface {
-
+	//Static input scanner that can be accessed by the static methods.
+	private static Scanner input = null;
+	
+	//UserInterface main method for the console application.
 	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);	
+		input = new Scanner(System.in);	
 	
 		startTheProgram();
 		
-		String password = "123";
-		logIn(input, password);
-							
-	}
+		String password = "p@ssw0rd";
+		logIn(password);
+		
+		System.out.println("End of program.");
+	} //End of the main method
 	
+	
+	//Starts the program and displays a welcome message.
 	public static void startTheProgram() {
 		System.out.println("*** Welcome to INNKEEPER system! ***\n");
 				
-	}
+	} //End of the startTheProgram method
 	
-	public static void logIn(Scanner input, String password) {
+	
+	//Verification method used to log into the system.
+	public static void logIn(String password) {
 		int count = 1;
 		String temp = "";
 		System.out.println("Please enter your password to Log In: ");
@@ -34,41 +42,49 @@ public class UserInterface {
 		
 		if (temp.equals(password)) {
 			System.out.println("Success!!");
-			mainMenu(input);
+			mainMenu();
 		}
 		else {
 			System.out.println("Failed Credential Verification!! Goodbye!");
+			System.exit(1);
 		}
-	}
+	} //End of the logIn method
 	
-	public static void mainMenu(Scanner input) {
+	
+	//Displays the main menu after logging in to the user.
+	public static void mainMenu() {
 		System.out.println("\nMain Menu:\n"
 				+ "1 - Input Data.\n"
 				+ "2 - Display a Report.\n"
 				+ "0 - Exit.\n\n"
 				+ "Please enter your selection: ");
 		String select = input.next();
-		mainChoice(select, input);
-	}
+		mainChoice(select);
+	} //End of the mainMenu method
 	
-	public static void mainChoice(String select, Scanner input) {
+	
+	//Handles a main menu choice selection.
+	public static void mainChoice(String select) {
 		switch (select) {
 			case "1":
-				inputMenu(input);
+				inputMenu();
 				break;
 			case "2":
-				displayMenu(input);
+				displayMenu();
 				break;
 			case "0":
 				System.out.println("Goodbye!");
+				System.exit(0);
 				break;
 			default:
 				System.out.println("Invalid input. Please try again!");
-				mainMenu(input);
+				mainMenu();
 		}
-	}
+	} //End of the mainChoice method
 	
-	public static void inputMenu(Scanner input) {
+	
+	//Displays the input data menu to the user.
+	public static void inputMenu() {
 		System.out.println("\nInput Data:\n"
 				+ "1 - Add a new Tenant.\n"
 				+ "2 - Record a Rental Payment.\n"
@@ -76,10 +92,12 @@ public class UserInterface {
 				+ "0 - Return to Main Menu.\n\n"
 				+ "Please enter your selection: ");
 		String select = input.next();
-		inputChoice(select, input);
-	}
+		inputChoice(select);
+	} //End of the inputMenu method
 	
-	public static void inputChoice(String select, Scanner input) {
+	
+	//Records data from the user based on their selection.
+	public static void inputChoice(String select) {
 		switch (select) {
 			case "1":
 				MainMenuController.inputTenant();
@@ -91,15 +109,18 @@ public class UserInterface {
 				MainMenuController.inputExpenseRecord();
 				break;	
 			case "0":
-				mainMenu(input);
+				mainMenu();
 				break;
 			default:
 				System.out.println("Invalid input. Please try again!");
-				inputMenu(input);
+				inputMenu();
 		}
-	}
+		mainMenu(); //return to the main menu
+	} //End of the inputChoice method
 	
-	public static void displayMenu(Scanner input) {
+	
+	//Displays the print menu options to the user.
+	public static void displayMenu() {
 		System.out.println("\nDisplay a Report:\n"
 				+ "1 - Display Tenants.\n"
 				+ "2 - Display Rental Records.\n"
@@ -108,10 +129,12 @@ public class UserInterface {
 				+ "0 - Return to Main Menu.\n\n"
 				+ "Please enter your selection: ");
 		String select = input.next();
-		displayChoice(select, input);
-	}
+		displayChoice(select);
+	} //End of the displayMenu method
 	
-	public static void displayChoice(String select, Scanner input) {
+	
+	//Prints the choice selected by the user.
+	public static void displayChoice(String select) {
 		switch (select) {
 			case "1":
 				MainMenuController.printTenantList();
@@ -126,11 +149,13 @@ public class UserInterface {
 				MainMenuController.printAnnualSummary();
 				break;	
 			case "0":
-				mainMenu(input);
+				mainMenu();
 				break;
 			default:
 				System.out.println("Invalid input. Please try again!");
-				displayMenu(input);
+				displayMenu();
 		}
-	}
-}
+		mainMenu(); //return to the main menu
+	} //End of the displayChoice method
+	
+} //End of the UserInterface class.

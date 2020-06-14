@@ -2,6 +2,7 @@ package main;
 // Sirage
 import java.util.List;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 import java.util.ArrayList;
 
 public class RentalIncomeReport {
@@ -16,12 +17,14 @@ public class RentalIncomeReport {
 	}
 	
 	public RentalIncomeReport(ArrayList<IncomeRecord> records) {
+		this.records = new ArrayList<>(records);
 		this.tmap = new TreeMap<>();
-		for (IncomeRecord r : records)
-		{
-			tmap.put(r.getApartmentN(),r.recordRent());
-		}
-		
+		this.tmap = (TreeMap<Integer, String>) records.stream().collect(Collectors.toMap(IncomeRecord::getApartmentN, IncomeRecord::recordRent));
+	}
+	
+	public TreeMap<Integer,String> getRentRecord()
+	{
+		return tmap;
 	}
 	
 	public void recordIncomePayment(String rent) {

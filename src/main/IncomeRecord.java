@@ -8,9 +8,13 @@ public class IncomeRecord{
 	private String name;
 	private float amount;
 	private int month;	
+	private int apartmentN;
+	private TenantList tenant = new TenantList();
+	
 	
 	public IncomeRecord(String name, float amount, int month) {
-		this.name = name;
+		//HashMap<String,Integer> apartments = tenant.getApartmentNumber(name);
+		this.apartmentN = tenant.getApartmentNumber(name);
 		this.amount = amount;
 		this.month = month;
 	}
@@ -39,9 +43,17 @@ public class IncomeRecord{
 		return month;
 	}
 	
+	public void setApartmentN(int apartmentN) {
+		this.apartmentN = apartmentN;
+	}
+	
+	public int getApartmentN() {
+		return apartmentN;
+	}
+	
 	public String recordRent() {
 		//TODO: return a rent record
-		return "Name: " + name + " Rent Amount: " + amount + " Month Paid: " + month;
+		return "Apartment Number: " + apartmentN + " Rent Amount: " + amount + " Month Paid: " + month;
 	}
 	
 }

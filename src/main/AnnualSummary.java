@@ -11,7 +11,6 @@ public class AnnualSummary {
 	public AnnualSummary () {}
 	
 	public void displayIncomeReport(RentalIncomeReport iReport) {
-		//TODO: method to display the year to date income report
 		float total = 0;
 		
 		for(IncomeRecord i : iReport.getRecords()) {
@@ -23,7 +22,6 @@ public class AnnualSummary {
 	}	
 	
 	public void displayExpenseReport(ExpensePaymentReport eReport) {
-		//TODO: method to display the year to date expenses
 		float total = 0;
 		float insurance = 0;
 		float utilities = 0;
@@ -44,7 +42,6 @@ public class AnnualSummary {
 	}
 	
 	public void displayBalance() {
-		//TODO: method to display the balance of + income - expense
 		balance = totalIncome - totalExpense;
 		System.out.println("\nBalance " + balance);
 	}

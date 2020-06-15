@@ -10,7 +10,7 @@ public class AnnualSummary {
 
 	public AnnualSummary () {}
 	
-	public void displayTotalIncome(RentalIncomeReport iReport) {
+	public void displayIncomeReport(RentalIncomeReport iReport) {
 		//TODO: method to display the year to date income report
 		float total = 0;
 		
@@ -22,7 +22,7 @@ public class AnnualSummary {
 		System.out.println("\nIncome\nRent " + totalIncome);
 	}	
 	
-	public void displayTotalExpense(ExpensePaymentReport eReport) {
+	public void displayExpenseReport(ExpensePaymentReport eReport) {
 		//TODO: method to display the year to date expenses
 		float total = 0;
 		float insurance = 0;

@@ -23,9 +23,14 @@ public class RentalIncomeReport {
 		this.tmap = (TreeMap<Integer, String>) records.stream().collect(Collectors.toMap(IncomeRecord::getApartmentN, IncomeRecord::recordRent));
 	}
 	
-	public TreeMap<Integer,String> getRentRecord()
+	public TreeMap<Integer,String> getTmap()
 	{
 		return tmap;
+	}
+	
+	public List<IncomeRecord> getRecords()
+	{
+		return records;
 	}
 	
 	public void recordIncomePayment(String rent) {

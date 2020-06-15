@@ -1,9 +1,14 @@
 package main;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 public class AnnualSummary {
 
-	public void displayIncomeReport() {
+	public void displayIncomeReport(RentalIncomeReport incomeReport) {
 		//TODO: method to display the year to date income report
+		int totalRent;
+		
 	}
 	
 	

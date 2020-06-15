@@ -37,6 +37,11 @@ public class ExpensePaymentReport {
 		}
 	}
 	
+	public List<ExpenseRecord> getRecords()
+	{
+		return records;
+	}
+	
 	public void recordExpensePayment(ExpenseRecord expense) {
 		//TODO: record the payment
 	}

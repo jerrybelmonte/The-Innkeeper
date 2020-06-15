@@ -1,17 +1,31 @@
 package main;
-
+// Sirage
 import java.util.List;
+import java.util.TreeMap;
+import java.util.ArrayList;
 
 public class RentalIncomeReport {
 	//TODO: columns and rows
 	private List<IncomeRecord> records;
+	private TreeMap<Integer,String> tmap;
 
+	public RentalIncomeReport()
+	{
+		this.records = new ArrayList<IncomeRecord>();
+		this.tmap = new TreeMap<Integer,String>(); 
+	}
 	
-	public RentalIncomeReport(List<IncomeRecord> records) {
-		this.records = records;
+	public RentalIncomeReport(ArrayList<IncomeRecord> records) {
+		this.tmap = new TreeMap<>();
+		for (IncomeRecord r : records)
+		{
+			tmap.put(r.getApartmentN(),r.recordRent());
+		}
+		
 	}
 	
 	public void recordIncomePayment(String rent) {
 		//TODO: method to record a rent record
+		
 	}
 }

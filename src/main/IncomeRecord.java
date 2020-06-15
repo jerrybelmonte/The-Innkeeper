@@ -4,56 +4,55 @@ package main;
 //search the apartment number based on the tenant name.
 //Make a record list, sorted by apartment number in a TreeMap, with amount paid and month.
 
-public class IncomeRecord{
-	private String name;
-	private float amount;
-	private int month;	
-	private int apartmentN;
-	private TenantList tenant = new TenantList();
+public class IncomeRecord {
+	private String tenantName;
+	private int apartmentNum;
+	private float rentAmount;
+	private int monthPaid;
 	
 	
-	public IncomeRecord(String name, float amount, int month) {
-		//HashMap<String,Integer> apartments = tenant.getApartmentNumber(name);
-		this.apartmentN = tenant.getApartmentNumber(name);
-		this.amount = amount;
-		this.month = month;
+	public IncomeRecord(Tenant currentTenant, float rentAmount, int monthPaid) {
+		this.tenantName = currentTenant.getTenantName();
+		this.apartmentNum = currentTenant.getApartmentNumber();
+		this.rentAmount = rentAmount;
+		this.monthPaid = monthPaid;
 	}
 	
 	public String getTenantName() {
-		return name;
+		return this.tenantName;
 	}
 
 	public void setTenantName(String name) {
-		this.name = name;
+		this.tenantName = name;
 	}
 
 	public float getRentAmount() {
-		return amount;
+		return this.rentAmount;
 	}
 	
 	public void setRentAmount(float amount) {
-		this.amount = amount;
+		this.rentAmount = amount;
 	}
 
 	public void setMonthPaid(int month) {
-		this.month = month;
+		this.monthPaid = month;
 	}
 	
 	public int getMonthPaid() {
-		return month;
+		return this.monthPaid;
 	}
 	
-	public void setApartmentN(int apartmentN) {
-		this.apartmentN = apartmentN;
+	public void setApartmentNum(int apartmentNumber) {
+		this.apartmentNum = apartmentNumber;
 	}
 	
-	public int getApartmentN() {
-		return apartmentN;
+	public int getApartmentNum() {
+		return this.apartmentNum;
 	}
 	
 	public String recordRent() {
 		//TODO: return a rent record
-		return " Rent Amount: " + amount + " Month Paid: " + month;
+		return " Rent Amount: " + rentAmount + " Month Paid: " + monthPaid;
 	}
 	
 }

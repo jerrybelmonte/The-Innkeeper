@@ -18,7 +18,7 @@ public class RentalIncomeReport {
 	public RentalIncomeReport(ArrayList<IncomeRecord> records) {
 		this.records = new ArrayList<>(records);
 		this.tmap = new TreeMap<>();
-		this.tmap = (TreeMap<Integer, String>) records.stream().collect(Collectors.toMap(IncomeRecord::getApartmentN, IncomeRecord::recordRent));
+		this.tmap = (TreeMap<Integer, String>) records.stream().collect(Collectors.toMap(IncomeRecord::getApartmentNum, IncomeRecord::recordRent));
 	}
 	
 	public Map<Integer,String> getTmap()
@@ -35,7 +35,7 @@ public class RentalIncomeReport {
 	{
 		if (this.records.add(newRecord)) {
 			try {
-				this.tmap.putIfAbsent(newRecord.getApartmentN(),
+				this.tmap.putIfAbsent(newRecord.getApartmentNum(),
 						newRecord.recordRent());
 			} catch (NullPointerException NPE) {}
 		} //end if

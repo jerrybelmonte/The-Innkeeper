@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class RentalIncomeReport {
 	//TODO: columns and rows
-	public List<IncomeRecord> records;
+	private List<IncomeRecord> records;
 	private TreeMap<Integer,String> tmap;
 
 	public RentalIncomeReport()

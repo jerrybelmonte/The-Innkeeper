@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class UserInterface {
 	//Static input scanner that can be accessed by the static methods.
 	private static Scanner input = null;
+	//Main menu that records data and prints reports.
+	private static MainMenuController controller = null;
 	
 	//UserInterface main method for the console application.
 	public static void main(String[] args) {
@@ -15,15 +17,15 @@ public class UserInterface {
 		String password = "p@ssw0rd";
 		logIn(password);
 		
+		input.close();
 		System.out.println("End of program.");
 	} //End of the main method
 	
 	
 	//Starts the program and displays a welcome message.
 	public static void startTheProgram() {
-
 		System.out.println("*** Welcome to INNKEEPER system! ***\n");
-				
+		controller = MainMenuController.getMainMenu(); //load the main menu controller
 	} //End of the startTheProgram method
 	
 	//Verification method used to log into the system.
@@ -100,13 +102,13 @@ public class UserInterface {
 	public static void inputChoice(String select) {
 		switch (select) {
 			case "1":
-				MainMenuController.inputTenant();
+				controller.inputTenant();
 				break;
 			case "2":
-				MainMenuController.inputIncomeRecord();
+				controller.inputIncomeRecord();
 				break;
 			case "3":
-				MainMenuController.inputExpenseRecord();
+				controller.inputExpenseRecord();
 				break;	
 			case "0":
 				mainMenu();
@@ -137,16 +139,16 @@ public class UserInterface {
 	public static void displayChoice(String select) {
 		switch (select) {
 			case "1":
-				MainMenuController.printTenantList();
+				controller.printTenantList();
 				break;
 			case "2":
-				MainMenuController.printIncomeReport();
+				controller.printIncomeReport();
 				break;
 			case "3":
-				MainMenuController.printExpenseReport();
+				controller.printExpenseReport();
 				break;	
 			case "4":
-				MainMenuController.printAnnualSummary();
+				controller.printAnnualSummary();
 				break;	
 			case "0":
 				mainMenu();

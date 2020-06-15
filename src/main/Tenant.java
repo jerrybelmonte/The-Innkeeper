@@ -103,7 +103,7 @@ public class Tenant implements Comparable<Tenant> {
 
 	@Override
 	public String toString() {
-		return this.apartmentNumber + ", " + this.tenantName;
+		return this.apartmentNumber + " " + this.tenantName;
 	} // End of the toString override
 
 } // End of the Tenant class.

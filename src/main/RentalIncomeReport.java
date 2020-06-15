@@ -32,6 +32,11 @@ public class RentalIncomeReport {
 	{
 		return records;
 	}
+
+	public void addRecord(IncomeRecord newRecord) 
+	{
+		records.add(newRecord);
+	} 
 	
 	public void recordIncomePayment(String rent) {
 		//TODO: method to record a rent record

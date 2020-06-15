@@ -104,11 +104,62 @@ public class MainMenuController {
 	
 	public static void inputIncomeRecord() {
 		//TODO: method to input a rental record
-	}
+		MainMenuController menu = MainMenuController.getMainMenu();
+		IncomeRecord newRecord = null;
+		
+		boolean inputIsValid = false;
+		do {
+			System.out.print("\nEnter the tenant's name (Bob Smith): ");
+			String tenantName = "";
+			
+			if (menu.input.hasNext()) {
+				tenantName = menu.input.nextLine();
+			} //end if
+			
+			System.out.print("Amount of rent recieved ($99.87): ");
+			float amount = 0;
+			
+			if (menu.input.hasNextInt()) {
+				String line = menu.input.nextLine();
+				amount = Integer.valueOf(line);
+			} //end if
+			
+			System.out.print("Enter the month the rental is for (1-12): ");
+			int month = 0;
+			
+			if (menu.input.hasNextInt()) {
+				String line = menu.input.nextLine();
+				month = Integer.valueOf(line);
+			} //end if
+
+			if (tenantName.length() > 1 && amount > 0 && month > 0 && month < 13) {
+				newRecord = new IncomeRecord(tenantName, amount, month);
+				inputIsValid = true;
+			}
+			
+		} while (!inputIsValid);
+
+		try {
+			menu.iReport.addRecord(newRecord);
+		}
+		catch (IllegalArgumentException IAE) {
+			System.out.println(IAE.getMessage());
+		}
+		
+	} // End of the inputTenant method
+	
 	
 	
 	public static void printIncomeReport() {
 		//TODO: method to print the income report
+		MainMenuController menu = MainMenuController.getMainMenu();
+		System.out.println("\nApt# Amount Paid Month");
+
+		for (int i = 0; i < 20; i++) {
+			System.out.print("-");
+		} //end for
+
+		//System.out.print("\n" + menu.iReport.displayTenants());
 	}
 	
 	

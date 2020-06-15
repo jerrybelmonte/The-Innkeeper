@@ -10,13 +10,11 @@ public class UserInterface {
 		startTheProgram();
 		
 		String password = "123";
-		logIn(input, password);
-							
+		logIn(input, password);						
 	}
 	
 	public static void startTheProgram() {
-		System.out.println("*** Welcome to INNKEEPER system! ***\n");
-				
+		System.out.println("*** Welcome to INNKEEPER system! ***\n");			
 	}
 	
 	public static void logIn(Scanner input, String password) {

@@ -1,6 +1,7 @@
 package main;
 // Sirage
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
@@ -31,4 +32,5 @@ public class RentalIncomeReport {
 		//TODO: method to record a rent record
 		
 	}
+
 }

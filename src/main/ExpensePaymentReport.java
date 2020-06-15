@@ -2,6 +2,8 @@ package main;
 
 // Howard
 
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
 import java.util.List;
 import java.util.TreeMap;
 import java.util.ArrayList;
@@ -27,19 +29,28 @@ public class ExpensePaymentReport {
 	public ExpensePaymentReport(ArrayList<ExpenseRecord> records) {
 		// this.records = records;
 
+		this.records = new ArrayList<>(records);
+
 		// Create tree map object.
 		this.tMap = new TreeMap<>();
 
-		for(ExpenseRecord expenseRecord : records) { // Loop the record for each apartment # and expense.
+		// this.tMap = (TreeMap<String, Integer>);
 
-			// Key = apartment #. Value = record expense.
-			tMap.put(expenseRecord.getApartmentN(), expenseRecord.recordExpense());
-		}
+		this.tMap = (TreeMap<String, Integer>) records.stream().collect(Collectors.toMap(ExpenseRecord::getApartmentN,
+				ExpenseRecord::recordExpense));
+
 	}
 	
-	public List<ExpenseRecord> getRecords()
-	{
+	public List<ExpenseRecord> getRecords() {
 		return records;
+	}
+
+	public void addRecord(ExpenseRecord newRecord) {
+		records.add(newRecord);
+	}
+
+	public TreeMap<String, Integer> getTmap() {
+		return tMap;
 	}
 	
 	public void recordExpensePayment(ExpenseRecord expense) {

@@ -21,10 +21,10 @@ public class UserInterface {
 	
 	//Starts the program and displays a welcome message.
 	public static void startTheProgram() {
+
 		System.out.println("*** Welcome to INNKEEPER system! ***\n");
 				
 	} //End of the startTheProgram method
-	
 	
 	//Verification method used to log into the system.
 	public static void logIn(String password) {

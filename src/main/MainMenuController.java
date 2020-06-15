@@ -159,7 +159,7 @@ public class MainMenuController {
 			System.out.print("-");
 		} //end for
 
-		//System.out.print("\n" + menu.iReport.displayTenants());
+		//System.out.print("\n" + menu.iReport.displayRecords());
 	}
 	
 	

@@ -12,7 +12,7 @@ public class MainMenuController {
 	private Scanner input = null;
 	/** The list of tenant's in the apartment building. */
 	private TenantList tenants;
-	private RentalIncomeReport iReport;
+	private static RentalIncomeReport iReport;
 	private ExpensePaymentReport eReport;
 	private AnnualSummary summary;
 	
@@ -132,7 +132,8 @@ public class MainMenuController {
 				month = Integer.valueOf(line);
 			} //end if
 
-			if (tenantName.length() > 1 && amount > 0 && month > 0 && month < 13) {
+			if (tenantName.length() > 1 && amount > 0 && month > 0 && month < 13)
+			{
 				newRecord = new IncomeRecord(tenantName, amount, month);
 				inputIsValid = true;
 			}
@@ -153,13 +154,13 @@ public class MainMenuController {
 	public static void printIncomeReport() {
 		//TODO: method to print the income report
 		MainMenuController menu = MainMenuController.getMainMenu();
-		System.out.println("\nApt# Amount Paid Month");
+		System.out.println("\nAptNo Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec");
 
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < 55; i++) {
 			System.out.print("-");
 		} //end for
 
-		//System.out.print("\n" + menu.iReport.displayRecords());
+		System.out.print("\n" + menu.iReport.displayRecord());
 	}
 	
 	

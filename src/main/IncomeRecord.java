@@ -53,7 +53,7 @@ public class IncomeRecord{
 	
 	public String recordRent() {
 		//TODO: return a rent record
-		return "Apartment Number: " + apartmentN + " Rent Amount: " + amount + " Month Paid: " + month;
+		return " Rent Amount: " + amount + " Month Paid: " + month;
 	}
 	
 }

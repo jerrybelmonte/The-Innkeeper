@@ -15,7 +15,7 @@ public class ExpensePaymentReport {
 	private List<ExpenseRecord> records;
 
 	// String keys = Name. Integer values = Apartment Number
-	private TreeMap<Intger, String> tMap;
+	private TreeMap<Integer, String> tMap;
 
 	public ExpensePaymentReport () {
 
@@ -23,7 +23,7 @@ public class ExpensePaymentReport {
 		this.records = new ArrayList<ExpenseRecord>();
 
 		// Create a new tree map.
-		this.tMap = new TreeMap<Intger, String>();
+		this.tMap = new TreeMap<Integer, String>();
 	}
 
 	public ExpensePaymentReport(ArrayList<ExpenseRecord> records) {
@@ -36,7 +36,7 @@ public class ExpensePaymentReport {
 
 		// this.tMap = (TreeMap<Intger, String>);
 
-		this.tMap = (TreeMap<Intger, String>) records.stream().collect(Collectors.toMap(ExpenseRecord::getApartmentN,
+		this.tMap = (TreeMap<Integer, String>) records.stream().collect(Collectors.toMap(ExpenseRecord::getApartmentN,
 				ExpenseRecord::recordExpense));
 
 	}
@@ -49,7 +49,7 @@ public class ExpensePaymentReport {
 		records.add(newRecord);
 	}
 
-	public TreeMap<Intger, String> getTmap() {
+	public TreeMap<Integer, String> getTmap() {
 		return tMap;
 	}
 	

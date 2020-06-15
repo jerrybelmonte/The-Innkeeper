@@ -1,10 +1,10 @@
 package main;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
@@ -25,7 +25,7 @@ public class TenantList {
 	 */
 	public TenantList() {
 		this.tenants = new TreeSet<>();
-		this.apartments = new HashMap<>();
+		this.apartments = new TreeMap<>();
 	} // End of the default constructor.
 
 
@@ -36,7 +36,7 @@ public class TenantList {
 	 */
 	public TenantList(List<Tenant> list) {
 		this.tenants = new TreeSet<>(list);
-		this.apartments = new HashMap<>();
+		this.apartments = new TreeMap<>();
 		this.apartments = list.stream().map(t -> {
 			return Map.entry(t.getTenantName(), t.getApartmentNumber());
 		 	}
@@ -65,6 +65,9 @@ public class TenantList {
 						newTenant.getApartmentNumber());
 			} catch (NullPointerException NPE) {}
 		} //end if
+		else {
+			throw new IllegalArgumentException("The apartment is occupied");
+		} //end else
 	} // End of the insertTenant method
 
 

@@ -78,7 +78,12 @@ public class MainMenuController {
 			} //end if
 		} while (!inputIsValid);
 		
-		menu.tenants.addTenant(newTenant);
+		try {
+			menu.tenants.addTenant(newTenant);
+		} //end try 
+		catch (IllegalArgumentException IAE) {
+			System.out.println(IAE.getMessage());
+		} //end catch
 	} // End of the inputTenant method
 	
 	

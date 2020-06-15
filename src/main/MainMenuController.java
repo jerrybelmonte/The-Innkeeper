@@ -122,8 +122,8 @@ public class MainMenuController {
 		
 		System.out.println("\nAnnual Summary\n---------------");
 
-		menu.summary.displayTotalIncome(menu.iReport);
-		menu.summary.displayTotalExpense(menu.eReport);
+		menu.summary.displayIncomeReport(menu.iReport);
+		menu.summary.displayExpenseReport(menu.eReport);
 		menu.summary.displayBalance();
 	}
 	

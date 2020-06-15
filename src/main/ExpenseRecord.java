@@ -10,16 +10,25 @@ public class ExpenseRecord {
 	private String category;
 	private float amount;
 	private TenantList tenant = new TenantList();
-	private int apartmentN;
+	private int apartmentNum;
 	private String name;
+	private String payee;
 	
-	
-	public ExpenseRecord(String name, int month, int day, String category, float amount) {
+	public ExpenseRecord(String name, int month, int day, String category, String payee, float amount) {
 		this.month = month;
 		this.day = day;
 		this.category = category;
+		this.payee = payee;
 		this.amount = amount;
-		this.apartmentN = tenant.getApartmentNumber(name); // Tenant's name and apartment number.
+		this.apartmentNum = tenant.getApartmentNumber(name); // Tenant's name and apartment number.
+	}
+
+	public int getApartmentNum() {
+		return apartmentNum;
+	}
+
+	public void setApartmentNum(int apartmentNum) {
+		this.apartmentNum = apartmentNum;
 	}
 
 	public int getMonth() {
@@ -34,7 +43,7 @@ public class ExpenseRecord {
 		return day;
 	}
 
-	public void setDay() {
+	public void setDay(int day) {
 		this.day = day;
 	}
 
@@ -42,30 +51,30 @@ public class ExpenseRecord {
 		return category;
 	}
 
-	public void setCategory() {
+	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	public String getPayee() {
+		return payee;
+	}
+
+	public void setPayee(String payee) {
+		this.payee = payee;
 	}
 
 	public float getExpenseAmount() {
 		return amount;
 	}
 
-	public void setExpenseAmount() {
+	public void setExpenseAmount(float amount) {
 		this.amount = amount;
-	}
-
-	public void setApartmentN(int apartmentN) {
-		this.apartmentN = apartmentN;
-	}
-
-	public int getApartmentN() {
-		return apartmentN;
 	}
 
 
 	public String recordExpense() {
-		return "Apartment Number: " + apartmentN + " Month: " + month + " Day: " + day + " Category: "
-				+ category + " Expense Amount: " + amount;
+		return "Apartment Number: " + apartmentNum + " Month: " + month + " Day: " + day + " Category: "
+				+ category + "Payee: " + payee + " Expense Amount: " + amount;
 	}
 	
 }

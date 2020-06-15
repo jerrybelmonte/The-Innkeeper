@@ -12,7 +12,9 @@ public class MainMenuController {
 	private Scanner input = null;
 	/** The list of tenant's in the apartment building. */
 	private TenantList tenants;
-	
+	private RentalIncomeReport iReport;
+	private ExpensePaymentReport eReport;
+	private AnnualSummary summary;
 	
 	/**
 	 * The private constructor that only the MainMenuController class can access.
@@ -20,6 +22,9 @@ public class MainMenuController {
 	private MainMenuController() {
 		this.input = new Scanner(System.in);
 		this.tenants = new TenantList();
+		this.iReport = new RentalIncomeReport();
+		this.eReport = new ExpensePaymentReport();
+		this.summary = new AnnualSummary();
 	} // End of the private constructor for MainMenuController.
 	
 	
@@ -113,7 +118,13 @@ public class MainMenuController {
 	
 	
 	public static void printAnnualSummary() {
-		//TODO: method to print the annual summary
+		MainMenuController menu = MainMenuController.getMainMenu();
+		
+		System.out.println("\nAnnual Summary\n---------------");
+
+		menu.summary.displayTotalIncome(menu.iReport);
+		menu.summary.displayTotalExpense(menu.eReport);
+		menu.summary.displayBalance();
 	}
 	
 }

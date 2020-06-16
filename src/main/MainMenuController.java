@@ -189,7 +189,7 @@ public class MainMenuController {
 		return MainMenuController.mainMenu;
 	} // End of the static getMainMenu method
 
-	
+
 	/**
 	 * Adds a new tenant to the list of tenants.
 	 */
@@ -214,8 +214,8 @@ public class MainMenuController {
 			System.out.println(IAE.getMessage());
 		} //end catch
 	} // End of the inputTenant method
-	
-	
+
+
 	/**
 	 * Displays the list of current tenants living in the apartment building.
 	 */
@@ -280,24 +280,24 @@ public class MainMenuController {
 		String report = this.income.displayRecord();
 		System.out.println(report);
 	} // End of the printIncomeRecord method
-	
-	
+
+
 	/**
 	 * Records expense.
 	 */
 	public void inputExpenseRecord() {
-		//TODO: method to input an expense
+		
 		int monthNumber = this.getMonthNumFromScanner();
 		int dayNumber = this.getDayNumFromScanner();
 		String category = this.getCategoryFromScanner();
 		String payee = this.getPayeeFromScanner();
 		float amountPaid = this.getAmountPaidFromScanner();
 		
-		ExpenseRecord newExpense = new ExpenseRecord(payee, monthNumber, dayNumber, category, amountPaid);
-		System.out.println(newExpense.recordExpense());
+		ExpenseRecord newExpense = new ExpenseRecord(monthNumber, dayNumber, category, payee, amountPaid);
+		this.expense.addRecord(newExpense);
 	} // End of the inputExpenseRecord method
-	
-	
+
+
 	/**
 	 * Displays expenses.
 	 */
@@ -307,10 +307,14 @@ public class MainMenuController {
 		for (int i = 0; i < 30; i++) { 
 			System.out.print("-"); 
 		} //end for
+		
 		System.out.println();
+		
+		String report = this.expense.toString();
+		System.out.println(report);
 	} // End of the printExpenseReport method
-	
-	
+
+
 	/**
 	 * Displays annual report.
 	 */
@@ -321,5 +325,5 @@ public class MainMenuController {
 		this.summary.displayExpenseReport(this.expense);
 		this.summary.displayBalance();
 	} // End of the printAnnualSummary method
-	
+
 } // End of the MainMenuController class.

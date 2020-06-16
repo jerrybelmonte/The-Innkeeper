@@ -4,35 +4,42 @@ package main;
 // Create a record of expenses shown in month, day, amount, and category.
 // Added name to show which expense belongs to who.
 
+/**
+ * @author Howard
+ */
 public class ExpenseRecord {
+	/** The number of the month (1-12). */
 	private int month;
+	/** The number of the day (1-31). */
 	private int day;
+	/** The expense category. */
 	private String category;
-	private float amount;
-	private TenantList tenant = new TenantList();
-	private int apartmentNum;
-	private String name;
+	/** The payee we are writing a check to. */
 	private String payee;
-	
-	public ExpenseRecord(String name, int month, int day, String category, String payee, float amount) {
+	/** The amount paid in US dollars. */
+	private float amount;
+
+
+	/**
+	 * Normal constructor for the ExpenseRecord class.
+	 * 
+	 * @param month	   The month number (1-12).
+	 * @param day	   The day of the month (1-31).
+	 * @param category The expense category.
+	 * @param payee    The payee receiving a payment.
+	 * @param amount   The amount paid.
+	 */
+	public ExpenseRecord(int month, int day, String category, String payee, float amount) {
 		this.month = month;
 		this.day = day;
 		this.category = category;
 		this.payee = payee;
 		this.amount = amount;
-		this.apartmentNum = tenant.getApartmentNumber(name); // Tenant's name and apartment number.
-	}
+	} // End of the normal constructor.
 
-	public int getApartmentNum() {
-		return apartmentNum;
-	}
-
-	public void setApartmentNum(int apartmentNum) {
-		this.apartmentNum = apartmentNum;
-	}
 
 	public int getMonth() {
-		return month;
+		return this.month;
 	}
 
 	public void setMonth(int month) {
@@ -40,7 +47,7 @@ public class ExpenseRecord {
 	}
 
 	public int getDay() {
-		return day;
+		return this.day;
 	}
 
 	public void setDay(int day) {
@@ -48,7 +55,7 @@ public class ExpenseRecord {
 	}
 
 	public String getCategory() {
-		return category;
+		return this.category;
 	}
 
 	public void setCategory(String category) {
@@ -64,17 +71,23 @@ public class ExpenseRecord {
 	}
 
 	public float getExpenseAmount() {
-		return amount;
+		return this.amount;
 	}
 
 	public void setExpenseAmount(float amount) {
 		this.amount = amount;
 	}
 
-
 	public String recordExpense() {
-		return "Apartment Number: " + apartmentNum + " Month: " + month + " Day: " + day + " Category: "
-				+ category + "Payee: " + payee + " Expense Amount: " + amount;
+		return " Month: " + month + " Day: " + day + " Category: " + category 
+				+ "Payee: " + payee + " Expense Amount: " + amount;
 	}
-	
-}
+
+
+	@Override
+	public String toString() {
+		return this.month + "/" + this.day + " " + this.payee 
+				+ " " + this.amount + " " + this.category;
+	} // End of the toString override
+
+} // End of the ExpenseRecord class.

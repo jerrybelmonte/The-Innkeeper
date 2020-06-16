@@ -237,19 +237,24 @@ public class MainMenuController {
 	 * Records a rental payment.
 	 */
 	public void inputIncomeRecord() {
-		IncomeRecord rentPayment = null;
 		
 		String tenantName = this.getNameFromScanner();
 		Tenant currentTenant = this.tenants.getTenant(tenantName);
 		
 		if (currentTenant != null) {
 
+			int apartmentNum = currentTenant.getApartmentNumber();
 			float amountPaid = this.getAmountPaidFromScanner();
 			int monthRentIsDue = this.getMonthNumFromScanner();
 			
-			rentPayment = new IncomeRecord(currentTenant, amountPaid, monthRentIsDue);
-			System.out.println(rentPayment.getTenantName() + " " + rentPayment.getApartmentNum() + " " + rentPayment.getRentAmount());
-			this.income.addRecord(rentPayment);
+			if (this.income.checkForTenantName(tenantName)) {
+				this.income.insertRent(apartmentNum, monthRentIsDue, amountPaid);
+			} //end if
+			else {
+				IncomeRecord rentRecord = new IncomeRecord(currentTenant);
+				rentRecord.setRentAmount(monthRentIsDue, amountPaid);
+				this.income.addRecord(rentRecord);
+			} //end else
 		} //end if
 		else {
 			System.out.println("No tenant with that name."); //error message
@@ -265,10 +270,15 @@ public class MainMenuController {
 		System.out.printf("%n%s %s %s %s %s %s %s %s %s %s %s %s %s %n",
 				"AptNo", "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
 				"Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+		
 		for (int i = 0; i < 60; i++) { 
 			System.out.print("-"); 
 		} //end for
+		
 		System.out.println();
+		
+		String report = this.income.displayRecord();
+		System.out.println(report);
 	} // End of the printIncomeRecord method
 	
 	

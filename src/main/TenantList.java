@@ -141,9 +141,7 @@ public class TenantList {
 			
 			while (iter.hasNext()) {
 				Tenant temp = iter.next();
-				sb.append(temp.getApartmentNumber());
-				sb.append(", ");
-				sb.append(temp.getTenantName());
+				sb.append(temp);
 				sb.append(newline);
 			} //end while
 			

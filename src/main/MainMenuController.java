@@ -321,9 +321,9 @@ public class MainMenuController {
 	public void printAnnualSummary() {
 		System.out.println("\nAnnual Summary\n---------------");
 
-		this.summary.displayIncomeReport(this.income);
-		this.summary.displayExpenseReport(this.expense);
-		this.summary.displayBalance();
+		//this.summary.displayIncomeReport(this.income);
+		//this.summary.displayExpenseReport(this.expense);
+		this.summary.displayBalance(this.income, this.expense);
 	} // End of the printAnnualSummary method
 
 } // End of the MainMenuController class.

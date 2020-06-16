@@ -59,15 +59,15 @@ public class RentalIncomeReport {
 	}
 
 
-	public List<String> getRecords()
+	public Iterator<IncomeRecord> getRecords()
 	{
-		List<String> records = new ArrayList<>();
+		List<IncomeRecord> records = new ArrayList<>();
 		
 		for (IncomeRecord income : this.tenantRecords.values()) {
-			records.add(income.recordRent());
+			records.add(income);
 		}
 		
-		return records;
+		return records.listIterator();
 	}
 
 

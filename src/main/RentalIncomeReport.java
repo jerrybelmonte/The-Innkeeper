@@ -1,69 +1,142 @@
 package main;
 // Sirage
 import java.util.*;
-import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
+/**
+ * The rental income report with rows of rent payments.
+ * 
+ * @author Sirage
+ */
 public class RentalIncomeReport {
-	//TODO: columns and rows
-	private List<IncomeRecord> records;
-	private Map<Integer,String> tmap;
+	/** The rent rows: Key = apartment number, Value = IncomeRecord */
+	private Map<Integer, IncomeRecord> rentRows;
+	/** The tenant records: Key = tenant name, Value = IncomeRecord */
+	private Map<String, IncomeRecord> tenantRecords;
 
+
+	/**
+	 * Default constructor for the RentalIncomeReport class.
+	 */
 	public RentalIncomeReport()
 	{
-		this.records = new ArrayList<IncomeRecord>();
-		this.tmap = new TreeMap<Integer,String>(); 
+		this.rentRows = new TreeMap<>(); 
+		this.tenantRecords = new HashMap<>();
 	}
-	
-	public RentalIncomeReport(ArrayList<IncomeRecord> records) {
-		this.records = new ArrayList<>(records);
-		this.tmap = new TreeMap<>();
-		this.tmap = (TreeMap<Integer, String>) records.stream().collect(Collectors.toMap(IncomeRecord::getApartmentNum, IncomeRecord::recordRent));
+
+
+	/**
+	 * Normal constructor for the RentalIncomeReport class.
+	 * 
+	 * @param records The list of income records.
+	 */
+	public RentalIncomeReport(List<IncomeRecord> records) {
+		this.rentRows = new TreeMap<>();
+		this.tenantRecords = new HashMap<>();
+		
+		this.rentRows = records.stream().map(r -> {
+			return Map.entry(r.getApartmentNum(), r);
+			}
+		).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+		
+		this.tenantRecords = records.stream().map(r -> {
+			return Map.entry(r.getTenantName(), r);
+			}
+		).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 	}
-	
-	public Map<Integer,String> getTmap()
+
+
+	public List<String> getRentRows()
 	{
-		return tmap;
+		List<String> rows = new ArrayList<>();
+		
+		for (Integer aptNo : this.rentRows.keySet()) {
+			IncomeRecord rent = this.rentRows.get(aptNo);
+			rows.add(rent.toString());
+		}
+		
+		return rows;
 	}
-	
-	public List<IncomeRecord> getRecords()
+
+
+	public List<String> getRecords()
 	{
+		List<String> records = new ArrayList<>();
+		
+		for (IncomeRecord income : this.tenantRecords.values()) {
+			records.add(income.recordRent());
+		}
+		
 		return records;
 	}
 
-	public void addRecord(IncomeRecord newRecord) 
+
+	public void addRecord(IncomeRecord rentRecord) 
 	{
-		if (this.records.add(newRecord)) {
-			try {
-				this.tmap.putIfAbsent(newRecord.getApartmentNum(),
-						newRecord.recordRent());
-			} catch (NullPointerException NPE) {}
+		int apartmentNumber = rentRecord.getApartmentNum();
+		String tenantName = rentRecord.getTenantName();
+		
+		if (!this.checkForTenantName(tenantName)) {
+			
+			try { this.rentRows.putIfAbsent(apartmentNumber, rentRecord); } 
+			catch (NullPointerException NPE) {}
+			
+			try { this.tenantRecords.putIfAbsent(tenantName, rentRecord); } 
+			catch (NullPointerException NPE) {}
+			
 		} //end if
 		else {
 			throw new IllegalArgumentException("The apartment is occupied");
 		} //end else
 	}
 
+
+	public void insertRent(int apartmentNum, int monthNum, float amountPaid) {
+		IncomeRecord row = this.rentRows.get(apartmentNum);
+		String name = row.getTenantName();
+		
+		row.setRentAmount(monthNum, amountPaid);
+		
+		row = this.rentRows.put(apartmentNum, row);
+		row = this.tenantRecords.put(name, row);
+	}
+
+
 	public String displayRecord()
 	{
-		if (!this.records.isEmpty()) {
+		if (!this.tenantRecords.isEmpty()) {
 
 			String newline = System.lineSeparator();
 			StringBuilder sb = new StringBuilder();
-			Iterator<IncomeRecord> iter = this.records.iterator();
+			List<String> lines = this.getRentRows();
 
-			for (Map.Entry<Integer, String> entry : tmap.entrySet())
+			for (String row : lines)
 			{
-				sb.append("Apartment# " + entry.getKey());
-				sb.append(entry.getValue());
+				sb.append(row);
 				sb.append(newline);
 			}
-			//sb.append(tmap.values());
+
 			return sb.toString();
 		}
 		else {
 			return null;
 		}
+	}
+
+	
+	public boolean checkForTenantName(String tenantName) {
+		return (this.tenantRecords.get(tenantName) != null);
+	}
+
+	
+	public IncomeRecord getRowFromAptNum(int apartmentNumber) {
+		return this.rentRows.get(apartmentNumber);
+	}
+	
+	
+	public float getSumOfRow(int apartmentNumber) {
+		IncomeRecord row = this.getRowFromAptNum(apartmentNumber);
+		return row.getSumOfRents();
 	}
 	
 	public void recordIncomePayment(String rent) {
@@ -71,4 +144,4 @@ public class RentalIncomeReport {
 		
 	}
 
-}
+} // End of the RentalIncomeReport class.

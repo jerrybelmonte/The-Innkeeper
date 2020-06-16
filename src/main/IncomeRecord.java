@@ -114,7 +114,7 @@ public class IncomeRecord {
 	public String recordRent() {
 		//TODO: return a rent record
 		//return " Rent Amount: " + rentAmount + " Month Paid: " + monthPaid;
-		return this.tenantName + " " + this.apartmentNum + " " + this.rentPayments;
+		return this.tenantName + "," + this.apartmentNum + "," + this.rentPayments;
 	}
 
 

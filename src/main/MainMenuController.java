@@ -114,11 +114,71 @@ public class MainMenuController {
 	
 	public static void inputExpenseRecord() {
 		//TODO: method to input an expense
+		boolean inputIsValid = false;
+		do {
+
+			// Ask for tenant's name.
+			System.out.println("\nEnter the tenant's name (Bob Smith): ");
+			String tenantName = "";
+
+			if (menu.input.hasNext()) {
+				tenantName = menu.input.nextLine();
+			}
+
+			// Ask for month.
+			System.out.println("Enter month (1-12): ");
+			int month = 0;
+
+			if(menu.input.hasNextInt()) {
+				String line = menu.input.nextLine();
+				month = Integer.valueOf(line);
+			}
+
+			// Ask for day.
+			System.out.println("Enter day (1-31): ");
+			int day = 0;
+
+			if (menu.input.hasNextInt()) {
+				String line = menu.input.nextLine();
+				day = Integer.valueOf(line);
+			}
+
+			// Ask for category.
+			System.out.println("Enter expense category (Repairs, Utilities: ");
+			String category = "";
+
+			if (menu.input.hasNextInt()) {
+				String line = menu.input.nextLine();
+			}
+
+			// Ask payee's name.
+			System.out.println("Enter payee (Bob's Store): ");
+			String payee = "";
+
+			if (menu.input.hasNextInt()) {
+				String line = menu.input.nextLine();
+			}
+
+			// Ask for expense amount.
+			System.out.println("Enter the expense amount (89.29): ");
+			float amount = 0;
+
+			if (menu.input.hasNextInt()) {
+				String line = menu.input.nextLine();
+				amount = Float.valueOf(line);
+			}
+		}
 	}
 	
 	
 	public static void printExpenseReport() {
 		//TODO: method to print the expense report
+		MainMenuController menu = MainMenuController.getMainMenu();
+		System.out.println("\nExpense Amount");
+
+		for (int i = 0; i < 20; i++) {
+			System.out.println("-");
+		}
 	}
 	
 	

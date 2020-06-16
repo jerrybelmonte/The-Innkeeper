@@ -1,5 +1,11 @@
 package main;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +48,31 @@ public class TenantList {
 		 	}
 		).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 	} // End of the normal constructor.
+
+
+	/**
+	 * Overloaded constructor for the TenantList class.
+	 * 
+	 * @param array The string array of tenant records.
+	 */
+	public TenantList(String[] array) {
+		this.tenants = new TreeSet<>();
+		this.apartments = new TreeMap<>();
+		
+		List<Tenant> list = Arrays.stream(array).map(str -> {
+			String line = str.trim();
+			int index = line.indexOf(" ");
+			String name = line.substring(index + 1);
+			int aptNum = Integer.valueOf(line.substring(0, index));
+			return new Tenant(name, aptNum);
+		}).collect(Collectors.toList());
+		
+		list.forEach(t -> this.addTenant(t));
+		
+		//for (Tenant element : list) {
+		//	this.addTenant(element);
+		//}
+	} // End of the overloaded constructor.
 
 
 	/**
@@ -151,5 +182,17 @@ public class TenantList {
 			return null;
 		} //end else
 	} // End of the displayTenants method
+
+
+	public void recordTenants(String filename) {
+		Path target = Paths.get(filename).toAbsolutePath();
+		String list = this.displayTenants();
+		
+		try (BufferedWriter bw = Files.newBufferedWriter(target)) {
+			bw.write(list);
+		} catch (IOException e) {
+			throw new IllegalArgumentException(e.getMessage());
+		}
+	}
 	
 } // End of the TenantList class.

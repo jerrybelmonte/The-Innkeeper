@@ -33,14 +33,20 @@ class TestTenantList {
 
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
+		System.out.println("Tearing down test case.");
 	}
 
 	@BeforeEach
 	void setUp() throws Exception {
+		System.out.println("Starting test.");
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
+		String tenantList = tenants.displayTenants();
+		if (tenantList != null) {
+			System.out.print(tenantList);
+		}
 	}
 
 
@@ -75,26 +81,6 @@ class TestTenantList {
 
 	@Test
 	@Order(6)
-	void testGetTenant() {
-		String name1 = "One";
-		String name2 = "Two";
-		String name9 = "Nine";
-		String failName = "Some Name";
-		
-		Tenant tenant1 = tenants.getTenant(name1);
-		Tenant tenant2 = tenants.getTenant(name2);
-		Tenant tenant9 = tenants.getTenant(name9);
-		Tenant failTenant = tenants.getTenant(failName);
-		
-		assertNotNull(tenant1);
-		assertNotNull(tenant2);
-		assertNotNull(tenant9);
-		assertNull(failTenant);
-	}
-
-
-	@Test
-	@Order(7)
 	void testDeleteTenants() {
 		tenants.deleteTenants();
 		

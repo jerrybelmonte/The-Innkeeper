@@ -45,41 +45,7 @@ public class TenantList {
 
 
 	/**
-	 * Returns the tenant with the given name argument if there is a tenant with 
-	 * that name on the list.
-	 * 
-	 * @param tenantName The name of the tenant you want to get.
-	 * @return The tenant you are searching for if and only if the tenant is in 
-	 * 		   the list of tenants. Otherwise, returns null.
-	 */
-	public Tenant getTenant(String tenantName) {
-		if (this.apartments.containsKey(tenantName)) {
-			
-			Tenant tenant= null;
-			int apartmentNumber = this.getApartmentNumber(tenantName);
-			Tenant tenantSearchingFor = new Tenant(tenantName, apartmentNumber);
-			
-			Iterator<Tenant> iter = this.tenants.iterator();
-			
-			while (iter.hasNext()) {
-				
-				Tenant tempTenant = iter.next();
-				
-				if (tempTenant.equals(tenantSearchingFor)) {
-					tenant = tempTenant; //found the tenant
-					break; //exit loop
-				} //end if	
-			} //end while
-			
-			return tenant;
-		} //end if
-		else {
-			return null;
-		} //end else
-	} // End of the getTenant method
-
-	/**
-	 * Deletes the current list of tenants.
+	 * Deletes the list of tenants.
 	 */
 	public void deleteTenants() {
 		this.tenants.clear();
@@ -91,9 +57,6 @@ public class TenantList {
 	 * Adds a new tenant to the list of tenants.
 	 * 
 	 * @param newTenant The new tenant to add.
-	 * 
-	 * @throws IllegalArgumentException 
-	 * 				If the apartment number is occupied.
 	 */
 	public void addTenant(Tenant newTenant) {
 		if (this.tenants.add(newTenant)) {
@@ -109,8 +72,8 @@ public class TenantList {
 
 
 	/**
-	 * Returns the apartment number of the given tenant name argument if and 
-	 * only if the tenant is in the list of current tenants.
+	 * Returns the apartment number of the given tenant name if and only if
+	 * the tenant is in the list of current tenants.
 	 * 
 	 * @param tenantName The name of the tenant.
 	 * @return The tenant's apartment number. 
@@ -128,9 +91,6 @@ public class TenantList {
 
 	/**
 	 * Displays the list of tenants.
-	 * 
-	 * @return A string with the list of tenants. 
-	 * 		   Returns null if the list is empty.
 	 */
 	public String displayTenants() {
 		if (!this.tenants.isEmpty()) {
@@ -141,7 +101,9 @@ public class TenantList {
 			
 			while (iter.hasNext()) {
 				Tenant temp = iter.next();
-				sb.append(temp);
+				sb.append(temp.getApartmentNumber());
+				sb.append(", ");
+				sb.append(temp.getTenantName());
 				sb.append(newline);
 			} //end while
 			

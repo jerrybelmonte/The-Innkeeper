@@ -27,6 +27,8 @@ public class Tenant implements Comparable<Tenant> {
 
 
 	/**
+	 * Getter method for the Tenant class.
+	 * 
 	 * @return The tenant's name.
 	 */
 	public String getTenantName() {
@@ -35,6 +37,8 @@ public class Tenant implements Comparable<Tenant> {
 
 
 	/**
+	 * Sets the tenant's name.
+	 * 
 	 * @param tenantName Their full name.
 	 */
 	public void setTenantName(String tenantName) {
@@ -43,6 +47,8 @@ public class Tenant implements Comparable<Tenant> {
 
 
 	/**
+	 * Getter method for the Tenant class.
+	 * 
 	 * @return The tenant's apartment number.
 	 */
 	public int getApartmentNumber() {
@@ -51,6 +57,8 @@ public class Tenant implements Comparable<Tenant> {
 
 
 	/**
+	 * Sets the tenant's apartment number.
+	 * 
 	 * @param apartmentNumber Their apartment number.
 	 */
 	public void setApartmentNumber(int apartmentNumber) {
@@ -73,8 +81,8 @@ public class Tenant implements Comparable<Tenant> {
 			return false;
 		} //end if !instanceof
 		Tenant other = (Tenant) obj;
-		return this.apartmentNumber == other.apartmentNumber 
-				&& Objects.equals(this.tenantName, other.tenantName);
+		return this.apartmentNumber == other.getApartmentNumber() 
+				&& this.tenantName.equalsIgnoreCase(other.getTenantName());
 	} // End of the equals override
 
 
@@ -95,7 +103,7 @@ public class Tenant implements Comparable<Tenant> {
 
 	@Override
 	public String toString() {
-		return this.apartmentNumber + ", " + this.tenantName;
+		return this.apartmentNumber + " " + this.tenantName;
 	} // End of the toString override
 
 } // End of the Tenant class.

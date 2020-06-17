@@ -193,6 +193,6 @@ public class TenantList {
 		} catch (IOException e) {
 			throw new IllegalArgumentException(e.getMessage());
 		}
-	}
+	} // End of the recordTenants method
 	
 } // End of the TenantList class.

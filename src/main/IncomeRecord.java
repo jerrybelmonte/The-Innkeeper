@@ -1,7 +1,9 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 // Sirage
 //TODO : inherit a tenant into income record class.
@@ -51,6 +53,22 @@ public class IncomeRecord {
 		this.apartmentNum = currentTenant.getApartmentNumber();
 		this.rentPayments = rentPayments;
 	} // End of the overloaded constructor.
+
+
+	public IncomeRecord(String record) {
+		String[] tokens = record.split(";");
+		
+		this.tenantName = tokens[0].trim();
+		this.apartmentNum = Integer.valueOf(tokens[1]);
+		this.rentPayments = new ArrayList<>();
+		
+		String str = tokens[2].substring(tokens[2].indexOf("[") + 1, 
+				tokens[2].indexOf("]"));
+		
+		this.rentPayments = Arrays.asList(str.split(",")).stream().map(
+						s -> Float.valueOf(s)).collect(Collectors.toList()
+						);
+	} // End of the IncomeRecord String constructor.
 
 
 	public String getTenantName() {
@@ -114,7 +132,7 @@ public class IncomeRecord {
 	public String recordRent() {
 		//TODO: return a rent record
 		//return " Rent Amount: " + rentAmount + " Month Paid: " + monthPaid;
-		return this.tenantName + "," + this.apartmentNum + "," + this.rentPayments;
+		return this.tenantName + ";" + this.apartmentNum + ";" + this.rentPayments;
 	}
 
 

@@ -4,6 +4,12 @@ package main;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -39,6 +45,17 @@ public class ExpensePaymentReport {
 		this.expensePayments = new HashMap<>();
 		this.populateMap(this.getRecords());
 	} // End of the overloaded constructor.
+
+
+	public ExpensePaymentReport(String list) {
+		this.records = list.lines().map(str -> {
+			ExpenseRecord expense = new ExpenseRecord(str);
+			return expense;
+			}
+		).collect(Collectors.toList());
+		this.expensePayments = new HashMap<>();
+		this.populateMap(this.getRecords());
+	} // End of the String constructor.
 
 
 	private void populateMap(Iterator<ExpenseRecord> records) {
@@ -78,10 +95,22 @@ public class ExpensePaymentReport {
 		return this.expensePayments.getOrDefault(category, 0.0f);
 	}
 	
-	public void recordExpensePayment(ExpenseRecord expense) {
-		//TODO: record the payment
-	}
-	
+	public void recordExpensePayment(String filename) {
+		Path target = Paths.get(filename).toAbsolutePath();
+		Iterator<ExpenseRecord> iter = this.getRecords();
+		
+		try (BufferedWriter bw = Files.newBufferedWriter(target)) {
+			while (iter.hasNext()) {
+				String line = iter.next().recordExpense();
+				bw.write(line);
+				bw.newLine();
+			} //end while
+		} catch (IOException e) {
+			throw new IllegalArgumentException(e.getMessage());
+		}
+	} // End of the recordExpensePayment method
+
+
 	public String displayExpenseCategories() {
 		StringBuffer sb = new StringBuffer();
 		String newline = System.lineSeparator();

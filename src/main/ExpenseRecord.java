@@ -38,6 +38,22 @@ public class ExpenseRecord {
 	} // End of the normal constructor.
 
 
+	/**
+	 * Constructor that accepts single String expense record.
+	 * 
+	 * @param record The expense record from a text file.
+	 */
+	public ExpenseRecord(String record) {
+		String[] tokens = record.split(",");
+		
+		this.month = Integer.valueOf(tokens[0]);
+		this.day = Integer.valueOf(tokens[1]);
+		this.category = tokens[2].trim();
+		this.payee = tokens[3].trim();
+		this.amount = Float.valueOf(tokens[4]);
+	} // End of the ExpenseRecord String constructor.
+
+
 	public int getMonth() {
 		return this.month;
 	}
@@ -79,8 +95,8 @@ public class ExpenseRecord {
 	}
 
 	public String recordExpense() {
-		return " Month: " + month + " Day: " + day + " Category: " + category 
-				+ "Payee: " + payee + " Expense Amount: " + amount;
+		return month + "," + day + "," + category 
+				+ "," + payee + "," + amount;
 	}
 
 

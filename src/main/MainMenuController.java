@@ -382,4 +382,11 @@ public class MainMenuController {
 		this.summary.displayBalance(this.income, this.expense);
 	} // End of the printAnnualSummary method
 
+
+	public void saveTextFiles() {
+		this.tenants.recordTenants(tenantsTxtFile);
+		this.income.recordIncomePayment(incomeTxtFile);
+		this.expense.recordExpensePayment(expenseTxtFile);
+	} // End of the saveTextFiles method
+
 } // End of the MainMenuController class.

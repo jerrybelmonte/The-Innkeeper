@@ -18,15 +18,19 @@ public class UserInterface {
 		logIn(password);
 		
 		input.close();
-		System.out.println("End of program.");
 	} //End of the main method
 	
+	public static void endTheProgram() {
+		controller.saveTextFiles();
+		System.out.println("\n*** Thank you for using the INNKEEPER system! ***\n"
+				+ "\nGoodbye!\n");
+	} // End of the endTheProgram method
 	
 	//Starts the program and displays a welcome message.
 	public static void startTheProgram() {
 		System.out.println("*** Welcome to INNKEEPER system! ***\n");
 		controller = MainMenuController.getMainMenu(); //load the main menu controller
-	} //End of the startTheProgram method
+	} // End of the startTheProgram method
 	
 	//Verification method used to log into the system.
 	public static void logIn(String password) {
@@ -75,8 +79,7 @@ public class UserInterface {
 				displayMenu();
 				break;
 			case "0":
-				System.out.println("Goodbye!");
-				System.exit(0);
+				endTheProgram();
 				break;
 			default:
 				System.out.println("Invalid input. Please try again!");

@@ -55,6 +55,11 @@ public class IncomeRecord {
 	} // End of the overloaded constructor.
 
 
+	/**
+	 * Constructor that accepts single String income record.
+	 * 
+	 * @param record The income record from a text file.
+	 */
 	public IncomeRecord(String record) {
 		String[] tokens = record.split(";");
 		
@@ -130,9 +135,8 @@ public class IncomeRecord {
 
 
 	public String recordRent() {
-		//TODO: return a rent record
-		//return " Rent Amount: " + rentAmount + " Month Paid: " + monthPaid;
-		return this.tenantName + ";" + this.apartmentNum + ";" + this.rentPayments;
+		return this.tenantName + ";" + this.apartmentNum 
+				+ ";" + this.rentPayments;
 	}
 
 

@@ -1,5 +1,7 @@
 package main;
 
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.Scanner;
 
 /**
@@ -10,6 +12,12 @@ public class MainMenuController {
 	private static volatile MainMenuController mainMenu;
 	/** Scanner to process user input. */
 	private static Scanner sc = null;
+	/** The text file for the list of tenants. */
+	private static String tenantsTxtFile = "tenants.txt";
+	/** The text file for the list of income records. */
+	private static String incomeTxtFile = "income.txt";
+	/** The text file for the list of expense records. */
+	private static String expenseTxtFile = "expense.txt";
 	/** The list of tenant's in the apartment building. */
 	private TenantList tenants;
 	/** The rental income payment report. */
@@ -31,7 +39,23 @@ public class MainMenuController {
 		this.income = new RentalIncomeReport();
 		this.expense = new ExpensePaymentReport();
 		this.summary = new AnnualSummary();
+		this.loadTextFiles();
 	} // End of the private constructor for MainMenuController.
+
+
+	/**
+	 * Loads the files by creating a path to the text file.
+	 */
+	private void loadTextFiles() {
+		Path tenantsPath = FileSystems.getDefault().getPath("", tenantsTxtFile);
+		tenantsTxtFile = tenantsPath.toAbsolutePath().toString();
+		
+		Path incomePath = FileSystems.getDefault().getPath("", incomeTxtFile);
+		incomeTxtFile = incomePath.toAbsolutePath().toString();
+		
+		Path expensePath = FileSystems.getDefault().getPath("", expenseTxtFile);
+		expenseTxtFile = expensePath.toAbsolutePath().toString();
+	} // End of the 
 
 
 	/**

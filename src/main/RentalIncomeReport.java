@@ -1,4 +1,9 @@
 package main;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 // Sirage
 import java.util.*;
 import java.util.stream.Collectors;
@@ -45,7 +50,27 @@ public class RentalIncomeReport {
 		).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 	}
 
-
+	
+	public RentalIncomeReport(String list) {
+		this.rentRows = new TreeMap<>(); 
+		this.tenantRecords = new HashMap<>();
+		
+		this.rentRows = list.lines().map(str -> {
+			IncomeRecord rent = new IncomeRecord(str);
+			int apartmentNum = rent.getApartmentNum();
+			return Map.entry(apartmentNum, rent);
+			}
+		).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+		
+		this.tenantRecords = list.lines().map(str -> {
+			IncomeRecord rent = new IncomeRecord(str);
+			String tenantName = rent.getTenantName();
+			return Map.entry(tenantName, rent);
+			}
+		).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+	}
+	
+	
 	public List<String> getRentRows()
 	{
 		List<String> rows = new ArrayList<>();
@@ -138,10 +163,20 @@ public class RentalIncomeReport {
 		IncomeRecord row = this.getRowFromAptNum(apartmentNumber);
 		return row.getSumOfRents();
 	}
-	
-	public void recordIncomePayment(String rent) {
-		//TODO: method to record a rent record
+
+	public void recordIncomePayment(String filename) {
+		Path target = Paths.get(filename).toAbsolutePath();
+		Iterator<IncomeRecord> iter = this.getRecords();
 		
-	}
+		try (BufferedWriter bw = Files.newBufferedWriter(target)) {
+			while (iter.hasNext()) {
+				String line = iter.next().recordRent();
+				bw.write(line);
+				bw.newLine();
+			} //end while
+		} catch (IOException e) {
+			throw new IllegalArgumentException(e.getMessage());
+		}
+	} // End of the recordIncomePayment method
 
 } // End of the RentalIncomeReport class.

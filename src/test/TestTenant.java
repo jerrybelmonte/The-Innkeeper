@@ -122,7 +122,7 @@ class TestTenant {
 
 	@Test
 	void testToString() {
-		String str = number + ", " + name;
+		String str = number + " " + name;
 		
 		assertEquals(str, tenant.toString());
 	}

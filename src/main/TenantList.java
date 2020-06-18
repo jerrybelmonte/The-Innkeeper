@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -55,11 +54,11 @@ public class TenantList {
 	 * 
 	 * @param array The string array of tenant records.
 	 */
-	public TenantList(String[] array) {
+	public TenantList(String list) {
 		this.tenants = new TreeSet<>();
 		this.apartments = new TreeMap<>();
 		
-		List<Tenant> list = Arrays.stream(array).map(str -> {
+		List<Tenant> listOfTenants = list.lines().map(str -> {
 			String line = str.trim();
 			int index = line.indexOf(" ");
 			String name = line.substring(index + 1);
@@ -67,7 +66,7 @@ public class TenantList {
 			return new Tenant(name, aptNum);
 		}).collect(Collectors.toList());
 		
-		list.forEach(t -> this.addTenant(t));
+		listOfTenants.forEach(t -> this.addTenant(t));
 		
 		//for (Tenant element : list) {
 		//	this.addTenant(element);

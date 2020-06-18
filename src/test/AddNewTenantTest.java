@@ -180,13 +180,10 @@ class AddNewTenantTest {
 	@Test
 	@Order(8)
 	void testCreateTenantListOverloadedConstructor() {
-		String[] tenantRecords = {
-				"201 Aaa Zzz", "202 Bbb Yyy",
-				"203 Ccc Xxx", "204 Ddd Www",
-				"205 Eee Vvv", "206 Fff Uuu",
-				"207 Ggg Ttt", "208 Hhh Sss",
-				"209 Iii Rrr", "210 Jjj Qqq"
-				};
+		String tenantRecords = "201 Aaa Zzz\n" 
+				+ "202 Bbb Yyy\n" + "203 Ccc Xxx\n" + "204 Ddd Www\n"
+				+ "205 Eee Vvv\n" + "206 Fff Uuu\n" + "207 Ggg Ttt\n" 
+				+ "208 Hhh Sss\n" + "209 Iii Rrr\n" + "210 Jjj Qqq\n";
 		
 		tenants = new TenantList(tenantRecords);
 		

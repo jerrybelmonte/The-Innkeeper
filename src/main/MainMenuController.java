@@ -1,7 +1,10 @@
 package main;
 
+import java.io.IOException;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
@@ -40,6 +43,7 @@ public class MainMenuController {
 		this.expense = new ExpensePaymentReport();
 		this.summary = new AnnualSummary();
 		this.loadTextFiles();
+		this.importTextFiles();
 	} // End of the private constructor for MainMenuController.
 
 
@@ -55,7 +59,35 @@ public class MainMenuController {
 		
 		Path expensePath = FileSystems.getDefault().getPath("", expenseTxtFile);
 		expenseTxtFile = expensePath.toAbsolutePath().toString();
-	} // End of the 
+	} // End of the loadTextFiles method
+
+
+	private void importTextFiles() {
+		Path tenantsPath = Paths.get(tenantsTxtFile);
+		Path incomePath = Paths.get(incomeTxtFile);
+		Path expensePath = Paths.get(expenseTxtFile);
+		
+		if (Files.exists(tenantsPath)) {
+			try {
+				String list = Files.readString(tenantsPath);
+				this.tenants = new TenantList(list);
+			} catch (IOException e) { e.printStackTrace(); }
+		} //end if
+		
+		if (Files.exists(incomePath)) {
+			try {
+				String list = Files.readString(incomePath);
+				this.income = new RentalIncomeReport(list);
+			} catch (IOException e) { e.printStackTrace(); }
+		} //end if
+		
+		if (Files.exists(expensePath)) {
+			try {
+				String list = Files.readString(expensePath);
+				this.expense = new ExpensePaymentReport(list);
+			} catch (IOException e) { e.printStackTrace(); }
+		} //end if
+	} // End of the importTextFiles method
 
 
 	/**

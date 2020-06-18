@@ -1,5 +1,10 @@
 package main;
 
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
@@ -10,6 +15,12 @@ public class MainMenuController {
 	private static volatile MainMenuController mainMenu;
 	/** Scanner to process user input. */
 	private static Scanner sc = null;
+	/** The text file for the list of tenants. */
+	private static String tenantsTxtFile = "tenants.txt";
+	/** The text file for the list of income records. */
+	private static String incomeTxtFile = "income.txt";
+	/** The text file for the list of expense records. */
+	private static String expenseTxtFile = "expense.txt";
 	/** The list of tenant's in the apartment building. */
 	private TenantList tenants;
 	/** The rental income payment report. */
@@ -31,7 +42,52 @@ public class MainMenuController {
 		this.income = new RentalIncomeReport();
 		this.expense = new ExpensePaymentReport();
 		this.summary = new AnnualSummary();
+		this.loadTextFiles();
+		this.importTextFiles();
 	} // End of the private constructor for MainMenuController.
+
+
+	/**
+	 * Loads the files by creating a path to the text file.
+	 */
+	private void loadTextFiles() {
+		Path tenantsPath = FileSystems.getDefault().getPath("", tenantsTxtFile);
+		tenantsTxtFile = tenantsPath.toAbsolutePath().toString();
+		
+		Path incomePath = FileSystems.getDefault().getPath("", incomeTxtFile);
+		incomeTxtFile = incomePath.toAbsolutePath().toString();
+		
+		Path expensePath = FileSystems.getDefault().getPath("", expenseTxtFile);
+		expenseTxtFile = expensePath.toAbsolutePath().toString();
+	} // End of the loadTextFiles method
+
+
+	private void importTextFiles() {
+		Path tenantsPath = Paths.get(tenantsTxtFile);
+		Path incomePath = Paths.get(incomeTxtFile);
+		Path expensePath = Paths.get(expenseTxtFile);
+		
+		if (Files.exists(tenantsPath)) {
+			try {
+				String list = Files.readString(tenantsPath);
+				this.tenants = new TenantList(list);
+			} catch (IOException e) { e.printStackTrace(); }
+		} //end if
+		
+		if (Files.exists(incomePath)) {
+			try {
+				String list = Files.readString(incomePath);
+				this.income = new RentalIncomeReport(list);
+			} catch (IOException e) { e.printStackTrace(); }
+		} //end if
+		
+		if (Files.exists(expensePath)) {
+			try {
+				String list = Files.readString(expensePath);
+				this.expense = new ExpensePaymentReport(list);
+			} catch (IOException e) { e.printStackTrace(); }
+		} //end if
+	} // End of the importTextFiles method
 
 
 	/**
@@ -325,5 +381,12 @@ public class MainMenuController {
 		//this.summary.displayExpenseReport(this.expense);
 		this.summary.displayBalance(this.income, this.expense);
 	} // End of the printAnnualSummary method
+
+
+	public void saveTextFiles() {
+		this.tenants.recordTenants(tenantsTxtFile);
+		this.income.recordIncomePayment(incomeTxtFile);
+		this.expense.recordExpensePayment(expenseTxtFile);
+	} // End of the saveTextFiles method
 
 } // End of the MainMenuController class.

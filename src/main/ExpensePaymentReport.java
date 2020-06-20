@@ -1,9 +1,8 @@
 package main;
 
-// Howard
-
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -15,6 +14,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 /**
+ * The expense payment report class.
+ * 
  * @author Howard
  */
 public class ExpensePaymentReport {
@@ -28,9 +29,7 @@ public class ExpensePaymentReport {
 	 * Default constructor for the ExpensePaymentReport class.
 	 */
 	public ExpensePaymentReport () {
-		// Create a new array list of records.
 		this.records = new ArrayList<>();
-		// Create a new hash map.
 		this.expensePayments = new HashMap<>();
 	} // End of the default constructor.
 
@@ -41,42 +40,65 @@ public class ExpensePaymentReport {
 	 * @param records The list of expense records.
 	 */
 	public ExpensePaymentReport(List<ExpenseRecord> records) {
-		this.records = records;
-		this.expensePayments = new HashMap<>();
-		this.populateMap(this.getRecords());
+		this.records = new ArrayList<>(records);
+		this.expensePayments = new TreeMap<>();
+		this.populateMap(records);
 	} // End of the overloaded constructor.
 
 
+	/**
+	 * String constructor for the ExpensePaymentReport class.
+	 * 
+	 * @param list The string list of expense records.
+	 */
 	public ExpensePaymentReport(String list) {
 		this.records = list.lines().map(str -> {
 			ExpenseRecord expense = new ExpenseRecord(str);
 			return expense;
 			}
 		).collect(Collectors.toList());
-		this.expensePayments = new HashMap<>();
-		this.populateMap(this.getRecords());
+		
+		this.expensePayments = new TreeMap<>();
+		this.populateMap(this.records);
 	} // End of the String constructor.
 
 
-	private void populateMap(Iterator<ExpenseRecord> records) {
-		while (records.hasNext()) {
-			ExpenseRecord expense = records.next();
+	/**
+	 * Populates the map of expense payments.
+	 * 
+	 * @param records The expense records to map.
+	 */
+	private void populateMap(List<ExpenseRecord> records) {
+		for (ExpenseRecord expense : records) {
 			String category = expense.getCategory();
 			float amount = expense.getExpenseAmount();
 			
 			try { 
 				float value = this.expensePayments.getOrDefault(category, 0.0f);
 				this.expensePayments.put(category, value + amount);
-			} catch (NullPointerException NPE) {}
-		} //end while
+			} //end try 
+			catch (NullPointerException NPE) {} // ignore null return values from the map
+		} //end for
 	} // End of the populateMap method
 
 
+	/**
+	 * Gets all of the expense records.
+	 * 
+	 * @return Iterator of the expense records. 
+	 */
 	public Iterator<ExpenseRecord> getRecords() {
-		return this.records.listIterator();
-	}
+		this.records.sort(null);
+		return this.records.iterator();
+	} // End of the getRecord method
 
-	public void addRecord(ExpenseRecord newRecord) { //insertExpense
+
+	/**
+	 * Adds a new expense record to the expense payment report.
+	 * 
+	 * @param newRecord The expense record to add.
+	 */
+	public void addRecord(ExpenseRecord newRecord) {
 		records.add(newRecord);
 		String category = newRecord.getCategory();
 		float amount = newRecord.getExpenseAmount();
@@ -84,17 +106,38 @@ public class ExpensePaymentReport {
 		try { 
 			float value = this.expensePayments.getOrDefault(category, 0.0f);
 			this.expensePayments.put(category, value + amount);
-		} catch (NullPointerException NPE) {}
+		} //end try
+		catch (NullPointerException NPE) {}
 	} // End of the addRecord method
 
+
+	/**
+	 * Gets all of the expense categories in the expense payment report.
+	 * 
+	 * @return String iterator with all the expense categories.
+	 */
 	public Iterator<String> getExpenseCategories() {
 		return this.expensePayments.keySet().iterator();
-	}
+	} // End of the getExpenseCategories method
 
+
+	/**
+	 * Gets the amount paid to a specific category. If the category does not
+	 * exist, it will report 0.0 paid.
+	 * 
+	 * @param category The expense category.
+	 * @return The amount paid for the expense category given.
+	 */
 	public float getAmountPaidFromCategory(String category) {
 		return this.expensePayments.getOrDefault(category, 0.0f);
-	}
-	
+	} // End of the getAmountPaidFromCategory method
+
+
+	/**
+	 * Creates a record of the expense payment report by saving it to a text file.
+	 * 
+	 * @param filename The path to write the report to.
+	 */
 	public void recordExpensePayment(String filename) {
 		Path target = Paths.get(filename).toAbsolutePath();
 		Iterator<ExpenseRecord> iter = this.getRecords();
@@ -105,12 +148,18 @@ public class ExpensePaymentReport {
 				bw.write(line);
 				bw.newLine();
 			} //end while
-		} catch (IOException e) {
+		} //end try 
+		catch (IOException e) {
 			throw new IllegalArgumentException(e.getMessage());
-		}
+		} //end catch
 	} // End of the recordExpensePayment method
 
 
+	/**
+	 * Returns a list of expense categories to display to the user.
+	 * 
+	 * @return String list with the expense categories.
+	 */
 	public String displayExpenseCategories() {
 		StringBuffer sb = new StringBuffer();
 		String newline = System.lineSeparator();
@@ -119,15 +168,15 @@ public class ExpensePaymentReport {
 		
 		while (iter.hasNext()) {
 			String category = iter.next();
-			float amount = this.expensePayments.get(category);
-			
 			sb.append(category + " ");
+			float amount = this.expensePayments.get(category);
 			sb.append(amount);
 			sb.append(newline);
 		} //end while
 		
 		return sb.toString();
 	} // End of the displayExpenseCategories method
+
 
 	@Override
 	public String toString() {

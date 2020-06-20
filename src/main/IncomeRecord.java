@@ -3,19 +3,15 @@ package main;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
-
-// Sirage
-//TODO : inherit a tenant into income record class.
-//search the apartment number based on the tenant name.
-//Make a record list, sorted by apartment number in a TreeMap, with amount paid and month.
 
 /**
  * The rental income record for an apartment in the apartment building.
  * 
  * @author Sirage
  */
-public class IncomeRecord {
+public class IncomeRecord implements Comparable<IncomeRecord> {
 	/** The name of the tenant renting the apartment. */
 	private String tenantName;
 	/** The apartment number for the rental income record. */
@@ -67,30 +63,49 @@ public class IncomeRecord {
 		this.apartmentNum = Integer.valueOf(tokens[1]);
 		this.rentPayments = new ArrayList<>();
 		
-		String str = tokens[2].substring(tokens[2].indexOf("[") + 1, 
-				tokens[2].indexOf("]"));
+		String rentsList = tokens[2].substring(tokens[2].indexOf("[") + 1, tokens[2].indexOf("]"));
 		
-		this.rentPayments = Arrays.asList(str.split(",")).stream().map(
+		this.rentPayments = Arrays.asList(rentsList.split(",")).stream().map(
 						s -> Float.valueOf(s)).collect(Collectors.toList()
 						);
 	} // End of the IncomeRecord String constructor.
 
 
+	/**
+	 * Getter for the IncomeRecord class.
+	 * 
+	 * @return The name of the tenant.
+	 */
 	public String getTenantName() {
 		return this.tenantName;
 	} // End of the getTenantName getter
 
 
+	/**
+	 * Setter for the IncomeRecord class.
+	 * 
+	 * @param name The name of the tenant.
+	 */
 	public void setTenantName(String name) {
 		this.tenantName = name;
 	} // End of the setTenantName setter
 
 
+	/**
+	 * Getter for the IncomeRecord class.
+	 * 
+	 * @return The tenant's apartment number.
+	 */
 	public int getApartmentNum() {
 		return this.apartmentNum;
 	} // End of the getApartmentNum getter
 
 
+	/**
+	 * Setter for the IncomeRecord class.
+	 * 
+	 * @param apartmentNumber The tenant's apartment number.
+	 */
 	public void setApartmentNum(int apartmentNumber) {
 		this.apartmentNum = apartmentNumber;
 	} // End of the setApartmentNum setter
@@ -121,6 +136,8 @@ public class IncomeRecord {
 
 
 	/**
+	 * Calculates the total sum of all the rents for the apartment.
+	 * 
 	 * @return The sum of the rents.
 	 */
 	public float getSumOfRents() {
@@ -128,30 +145,78 @@ public class IncomeRecord {
 		
 		for (Float rent : rentPayments) {
 			sum += rent;
-		}
+		} //end for
 		
 		return sum;
 	} // End of the getSumOfRents method
 
 
+	/**
+	 * Returns a string record of the income that will be written to a text file.
+	 * 
+	 * @return Record of the rental payment.
+	 */
 	public String recordRent() {
-		return this.tenantName + ";" + this.apartmentNum 
-				+ ";" + this.rentPayments;
-	}
+		return this.tenantName + ";" + this.apartmentNum + ";" + this.rentPayments;
+	} // End of the recordRent method
 
 
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		
 		sb.append(this.apartmentNum);
 		
 		for (Float rent : rentPayments) {
 			sb.append(" ");
 			sb.append(rent);
-		}
+		} //end for
 		
 		return sb.toString();
 	} // End of the toString override
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(this.apartmentNum, this.tenantName);
+	} // End of the hashCode override
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		} //end if
+		
+		if (!(obj instanceof IncomeRecord)) {
+			return false;
+		} //end if
+		
+		IncomeRecord other = (IncomeRecord) obj;
+		return this.apartmentNum == other.getApartmentNum() 
+				&& Objects.equals(this.tenantName, other.getTenantName());
+	} // End of the equals override
+
+
+	/**
+	 * Compares this income record on the left to the income record on the right.
+	 * 
+	 * @return 	+1 if the apartment number on the left is greater,
+	 * 			-1 if the apartment number on the left is less than,
+	 * 			0  if the apartment numbers are the same. 
+	 */
+	@Override
+	public int compareTo(IncomeRecord o) {
+		int result = this.apartmentNum - o.getApartmentNum();
+		
+		if (result > 0) {
+			return 1;
+		} //end if
+		else if(result < 0) {
+			return -1;
+		} //end else if
+		else {
+			return 0;
+		} //end else
+	} // End of the compareTo override
 
 } // End of the IncomeRecord class.

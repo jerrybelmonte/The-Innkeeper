@@ -64,13 +64,10 @@ public class TenantList {
 			String name = line.substring(index + 1);
 			int aptNum = Integer.valueOf(line.substring(0, index));
 			return new Tenant(name, aptNum);
-		}).collect(Collectors.toList());
+			}
+		).collect(Collectors.toList());
 		
 		listOfTenants.forEach(t -> this.addTenant(t));
-		
-		//for (Tenant element : list) {
-		//	this.addTenant(element);
-		//}
 	} // End of the overloaded constructor.
 
 
@@ -83,30 +80,25 @@ public class TenantList {
 	 * 		   the list of tenants. Otherwise, returns null.
 	 */
 	public Tenant getTenant(String tenantName) {
+		Tenant tenant = null;
+		
 		if (this.apartments.containsKey(tenantName)) {
-			
-			Tenant tenant= null;
 			int apartmentNumber = this.getApartmentNumber(tenantName);
 			Tenant tenantSearchingFor = new Tenant(tenantName, apartmentNumber);
-			
 			Iterator<Tenant> iter = this.tenants.iterator();
 			
 			while (iter.hasNext()) {
-				
 				Tenant tempTenant = iter.next();
-				
 				if (tempTenant.equals(tenantSearchingFor)) {
 					tenant = tempTenant; //found the tenant
 					break; //exit loop
 				} //end if	
 			} //end while
-			
-			return tenant;
 		} //end if
-		else {
-			return null;
-		} //end else
+		
+		return tenant;
 	} // End of the getTenant method
+
 
 	/**
 	 * Deletes the current list of tenants.
@@ -128,9 +120,9 @@ public class TenantList {
 	public void addTenant(Tenant newTenant) {
 		if (this.tenants.add(newTenant)) {
 			try {
-				this.apartments.putIfAbsent(newTenant.getTenantName(), 
-						newTenant.getApartmentNumber());
-			} catch (NullPointerException NPE) {}
+				this.apartments.putIfAbsent(newTenant.getTenantName(), newTenant.getApartmentNumber());
+			} //end try
+			catch (NullPointerException NPE) {} // ignore null return values from map
 		} //end if
 		else {
 			throw new IllegalArgumentException("The apartment is occupied");
@@ -163,35 +155,42 @@ public class TenantList {
 	 * 		   Returns null if the list is empty.
 	 */
 	public String displayTenants() {
+		String listOfTenants = null;
+		
 		if (!this.tenants.isEmpty()) {
-			
 			String newline = System.lineSeparator();
 			StringBuilder sb = new StringBuilder();
 			Iterator<Tenant> iter = this.tenants.iterator();
 			
 			while (iter.hasNext()) {
-				Tenant temp = iter.next();
-				sb.append(temp);
+				Tenant tempTenant = iter.next();
+				sb.append(tempTenant);
 				sb.append(newline);
 			} //end while
 			
-			return sb.toString();
+			listOfTenants = sb.toString();
 		} //end if
-		else {
-			return null;
-		} //end else
+	
+		return listOfTenants;
 	} // End of the displayTenants method
 
 
+	/**
+	 * Makes a record of the list of tenants by saving the current list of tenants
+	 * to a text file.
+	 * 
+	 * @param filename The path to save the current list of tenants.
+	 */
 	public void recordTenants(String filename) {
-		Path target = Paths.get(filename).toAbsolutePath();
-		String list = this.displayTenants();
+		Path targetPath = Paths.get(filename).toAbsolutePath();
+		String listOfTenants = this.displayTenants();
 		
-		try (BufferedWriter bw = Files.newBufferedWriter(target)) {
-			bw.write(list);
-		} catch (IOException e) {
+		try (BufferedWriter writer = Files.newBufferedWriter(targetPath)) {
+			writer.write(listOfTenants);
+		} //end try 
+		catch (IOException e) {
 			throw new IllegalArgumentException(e.getMessage());
-		}
+		} //end catch
 	} // End of the recordTenants method
 	
 } // End of the TenantList class.

@@ -1,5 +1,12 @@
 package main;
 
+import java.util.Iterator;
+
+/**
+ * The User Interface class.
+ * 
+ * @author Kate Nguyen
+ */
 public class AnnualSummary {
 	private static float totalIncome;
 	private static float totalExpense;
@@ -10,7 +17,7 @@ public class AnnualSummary {
 	private float getRentSum(RentalIncomeReport income) {
 		float rentSum = 0.0f;
 		
-		for (var iter = income.getRecords(); iter.hasNext();) {
+		for (Iterator<IncomeRecord> iter = income.getRecords(); iter.hasNext();) {
 			rentSum += iter.next().getSumOfRents();
 		} //end for
 		
@@ -21,7 +28,7 @@ public class AnnualSummary {
 	private float getExpenseSum(ExpensePaymentReport expense) {
 		float expenseSum = 0.0f;
 		
-		for (var iter = expense.getRecords(); iter.hasNext();) {
+		for (Iterator<ExpenseRecord> iter = expense.getRecords(); iter.hasNext();) {
 			expenseSum += iter.next().getExpenseAmount();
 		} //end for
 		

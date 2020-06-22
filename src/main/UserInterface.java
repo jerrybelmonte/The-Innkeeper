@@ -2,6 +2,12 @@ package main;
 
 import java.util.Scanner;
 
+/**
+ * The User Interface class.
+ * 
+ * @author Kate Nguyen
+ */
+
 public class UserInterface {
 	//Static input scanner that can be accessed by the static methods.
 	private static Scanner input = null;

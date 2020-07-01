@@ -63,10 +63,8 @@ public class ExpensePaymentReport {
 
     private void importList(List<String> listOfRecords) {
 	if (!listOfRecords.isEmpty()) {
-	    this.records = listOfRecords.stream()
-		    .map(str -> new ExpenseRecord(str))
-		    .collect(Collectors.toList());
-	    
+	    this.records = listOfRecords.stream().map(str -> new ExpenseRecord(str)).collect(Collectors.toList());
+
 	    this.populateMap(this.records);
 	}
     } // End of the importList method
@@ -208,11 +206,9 @@ public class ExpensePaymentReport {
 	    int categoryNdx = 3;
 
 	    ExpenseRecord expense = this.records.get(i);
-	    data[i][dateNdx] = String.format("%d/%d", expense.getMonth(), 
-		    expense.getDay());
+	    data[i][dateNdx] = String.format("%d/%d", expense.getMonth(), expense.getDay());
 	    data[i][payeeNdx] = expense.getPayee();
-	    data[i][amountNdx] = String.format("$%,.2f", 
-		    expense.getExpenseAmount());
+	    data[i][amountNdx] = String.format("$%,.2f", expense.getExpenseAmount());
 	    data[i][categoryNdx] = expense.getCategory();
 	}
 

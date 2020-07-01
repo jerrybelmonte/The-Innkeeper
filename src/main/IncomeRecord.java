@@ -13,7 +13,8 @@ public class IncomeRecord implements Comparable<IncomeRecord> {
     private Tenant currentTenant;
     /**
      * The list of rent payments. There are 12 elements in the list, one for each
-     * calendar month. For example, rentPayments.get(0) returns the rent for January.
+     * calendar month. For example, rentPayments.get(0) returns the rent for
+     * January.
      */
     private List<Float> rentPayments;
 
@@ -24,10 +25,7 @@ public class IncomeRecord implements Comparable<IncomeRecord> {
      */
     public IncomeRecord(Tenant currentTenant) {
 	this.currentTenant = currentTenant;
-	this.rentPayments = Arrays.asList(
-		0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 
-		0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f
-		);
+	this.rentPayments = Arrays.asList(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
     } // End of the default constructor.
 
     /**
@@ -37,15 +35,11 @@ public class IncomeRecord implements Comparable<IncomeRecord> {
      */
     public IncomeRecord(String record) {
 	String[] tokens = record.split(";");
-	String rents = tokens[1].substring(
-		tokens[1].indexOf("[") + 1, 
-		tokens[1].indexOf("]")
-		);
+	String rents = tokens[1].substring(tokens[1].indexOf("[") + 1, tokens[1].indexOf("]"));
 
 	this.currentTenant = new Tenant(tokens[0]);
 	this.rentPayments = new ArrayList<>();
-	this.rentPayments = Arrays.asList(rents.split(",")).stream()
-		.map(str -> Float.valueOf(str))
+	this.rentPayments = Arrays.asList(rents.split(",")).stream().map(str -> Float.valueOf(str))
 		.collect(Collectors.toList());
     } // End of the String constructor.
 
@@ -136,15 +130,14 @@ public class IncomeRecord implements Comparable<IncomeRecord> {
 
     /**
      * Compares this income record on the left to the income record on the right.
-     * 
-     * @return +1 if the apartment number on the left is greater, 
-     *         -1 if the apartment number on the left is less than, 
-     *         0 if the apartment numbers are the same.
+     *
+     * @return +1 if the apartment number on the left is greater, -1 if the
+     *         apartment number on the left is less than, 0 if the apartment numbers
+     *         are the same.
      */
     @Override
     public int compareTo(IncomeRecord o) {
-	int difference = this.currentTenant.getApartmentNumber() 
-		- o.getTenant().getApartmentNumber();
+	int difference = this.currentTenant.getApartmentNumber() - o.getTenant().getApartmentNumber();
 
 	if (difference > 0) {
 	    return 1;

@@ -61,5 +61,5 @@ public class AnnualSummary {
 
 	return expenseSum;
     } // End of the getExpenseSum method
-    
+
 } // End of the AnnualSumarry class.

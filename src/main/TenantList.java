@@ -64,10 +64,8 @@ public class TenantList {
 
     private void importList(List<String> listOfTenants) {
 	if (!listOfTenants.isEmpty()) {
-	    List<Tenant> tenants = listOfTenants.stream()
-		    .map(str -> new Tenant(str))
-		    .collect(Collectors.toList());
-	    
+	    List<Tenant> tenants = listOfTenants.stream().map(str -> new Tenant(str)).collect(Collectors.toList());
+
 	    tenants.forEach(this::addTenant);
 	}
     } // End of the importList method
@@ -155,8 +153,7 @@ public class TenantList {
      *         list of tenants
      */
     public int getApartmentNumber(String tenantName) {
-	return this.nameToTenant.containsKey(tenantName) 
-		? this.nameToTenant.get(tenantName).getApartmentNumber() : -1;
+	return this.nameToTenant.containsKey(tenantName) ? this.nameToTenant.get(tenantName).getApartmentNumber() : -1;
     } // End of the getApartmentNumber method
 
     public String[] getTitlesForTable() {
@@ -196,9 +193,7 @@ public class TenantList {
 	    list.sort(null);
 	    for (Tenant each : list) {
 		sb.append(newline);
-		sb.append(String.format("%-5d | %-20s", 
-			each.getApartmentNumber(), 
-			each.getTenantName()));
+		sb.append(String.format("%-5d | %-20s", each.getApartmentNumber(), each.getTenantName()));
 	    }
 
 	    return sb.toString();

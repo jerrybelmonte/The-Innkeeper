@@ -133,8 +133,7 @@ public class ExpenseRecord implements Comparable<ExpenseRecord> {
 
     @Override
     public int hashCode() {
-	return Objects.hash(this.amount, this.category, 
-		this.day, this.month, this.payee);
+	return Objects.hash(this.amount, this.category, this.day, this.month, this.payee);
     } // End of the hashCode override
 
     @Override
@@ -153,8 +152,7 @@ public class ExpenseRecord implements Comparable<ExpenseRecord> {
 	if (dateDifference != 0) {
 	    return false;
 	} else {
-	    return Float.floatToIntBits(this.amount) 
-		    == Float.floatToIntBits(other.getExpenseAmount())
+	    return Float.floatToIntBits(this.amount) == Float.floatToIntBits(other.getExpenseAmount())
 		    && Objects.equals(this.category, other.getCategory())
 		    && Objects.equals(this.payee, other.getPayee());
 	}

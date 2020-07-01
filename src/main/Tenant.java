@@ -65,7 +65,7 @@ public class Tenant implements Comparable<Tenant> {
     @Override
     public int hashCode() {
 	int prime = 31;
-	return prime*this.apartmentNumber + this.tenantName.hashCode();
+	return prime * this.apartmentNumber + this.tenantName.hashCode();
     } // End of the hashCode override
 
     @Override
@@ -79,8 +79,7 @@ public class Tenant implements Comparable<Tenant> {
 	}
 
 	Tenant other = (Tenant) obj;
-	return this.apartmentNumber == other.getApartmentNumber() 
-		&& this.tenantName.equals(other.getTenantName());
+	return this.apartmentNumber == other.getApartmentNumber() && this.tenantName.equals(other.getTenantName());
     } // End of the equals override
 
 } // End of the Tenant class.

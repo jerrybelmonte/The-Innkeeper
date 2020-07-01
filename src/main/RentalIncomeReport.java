@@ -225,11 +225,8 @@ public class RentalIncomeReport {
     } // End of the recordIncomePayment method
 
     public String[] getTitlesForTable() {
-	String[] titles = { 
-		"Apartment #", "January", "February", "March", 
-		"April", "May", "June", "July", "August",
-		"September", "October", "November", "December" 
-		};
+	String[] titles = { "Apartment #", "January", "February", "March", "April", "May", "June", "July", "August",
+		"September", "October", "November", "December" };
 
 	return titles;
     } // End of the getTitlesForTable method

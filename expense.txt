@@ -1,4 +1,0 @@
-1,10,Utilities,City Water,100.0
-2,20,Insurance,All State,200.0
-3,30,Repairs,Bob's Plumbing,300.0
-5,8,Insurance,All State,1100.0

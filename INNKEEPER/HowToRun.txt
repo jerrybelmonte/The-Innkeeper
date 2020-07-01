@@ -1,0 +1,9 @@
+Windows 10:
+
+Double-click InnKeeperDemo.jar
+
+
+MacOS, from the terminal:
+
+$ cd /.../[parent directory]/INNKEEPER
+$ java -jar InnKeeperDemo.jar

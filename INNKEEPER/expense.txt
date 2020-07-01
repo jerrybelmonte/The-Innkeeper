@@ -1,0 +1,7 @@
+1,1,Utilities,City Water,1000.0
+1,2,Insurance,All State,1200.0
+3,1,Utilities,City Water,1000.0
+4,7,Plumber,Bob's Plumbing,250.0
+5,1,Utilities,City Water,1000.0
+5,10,Plumber,Bob's Pumbing,350.0
+6,2,Insurance,All State,1200.0

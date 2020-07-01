@@ -1,109 +1,86 @@
 package main;
 
-import java.util.Objects;
-
 /**
  * A tenant that rents an apartment in John's apartment building.
- * 
- * @author Jerry Belmonte
  */
 public class Tenant implements Comparable<Tenant> {
-	/** The name of the tenant. */
-	private String tenantName;
-	/** The tenant's apartment number. */
-	private int apartmentNumber;
+    private String tenantName;
+    private int apartmentNumber;
 
+    /**
+     * Normal constructor for the Tenant class.
+     *
+     * @param tenantName      Their full name.
+     * @param apartmentNumber Their apartment number.
+     */
+    public Tenant(String tenantName, int apartmentNumber) {
+	this.tenantName = tenantName;
+	this.apartmentNumber = apartmentNumber;
+    } // End of the normal constructor.
 
-	/**
-	 * Normal constructor for the Tenant class.
-	 * 
-	 * @param tenantName	  Their full name.
-	 * @param apartmentNumber Their apartment number.
-	 */
-	public Tenant(String tenantName, int apartmentNumber) {
-		this.tenantName = tenantName;
-		this.apartmentNumber = apartmentNumber;
-	} // End of the normal constructor.
+    /**
+     * String constructor for the Tenant class.
+     *
+     * @param record The tenant record from a text file.
+     */
+    public Tenant(String record) {
+	String[] tokens = record.split(",");
 
+	this.tenantName = tokens[1].trim();
+	this.apartmentNumber = Integer.valueOf(tokens[0].trim());
+    } // End of the String constructor.
 
-	/**
-	 * Getter method for the Tenant class.
-	 * 
-	 * @return The tenant's name.
-	 */
-	public String getTenantName() {
-		return this.tenantName;
-	} // End of the getter
+    /**
+     * @return The tenant's name.
+     */
+    public String getTenantName() {
+	return this.tenantName;
+    } // End of the getter
 
+    /**
+     * @return The tenant's apartment number.
+     */
+    public int getApartmentNumber() {
+	return this.apartmentNumber;
+    } // End of the getter
 
-	/**
-	 * Sets the tenant's name.
-	 * 
-	 * @param tenantName Their full name.
-	 */
-	public void setTenantName(String tenantName) {
-		this.tenantName = tenantName;
-	} // End of the setter
+    @Override
+    public String toString() {
+	return this.apartmentNumber + "," + this.tenantName;
+    } // End of the toString override
 
+    @Override
+    public int compareTo(Tenant o) {
+	int difference = this.apartmentNumber - o.getApartmentNumber();
 
-	/**
-	 * Getter method for the Tenant class.
-	 * 
-	 * @return The tenant's apartment number.
-	 */
-	public int getApartmentNumber() {
-		return this.apartmentNumber;
-	} // End of the getter
+	if (difference < 0) {
+	    return -1;
+	} else if (difference > 0) {
+	    return 1;
+	} else {
+	    return 0;
+	}
+    } // End of the compareTo override
 
+    @Override
+    public int hashCode() {
+	int prime = 31;
+	return prime*this.apartmentNumber + this.tenantName.hashCode();
+    } // End of the hashCode override
 
-	/**
-	 * Sets the tenant's apartment number.
-	 * 
-	 * @param apartmentNumber Their apartment number.
-	 */
-	public void setApartmentNumber(int apartmentNumber) {
-		this.apartmentNumber = apartmentNumber;
-	} // End of the setter
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj) {
+	    return true;
+	}
 
+	if (!(obj instanceof Tenant)) {
+	    return false;
+	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(this.apartmentNumber, this.tenantName);
-	} // End of the hashCode override
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		} //end if ==
-		if (!(obj instanceof Tenant)) {
-			return false;
-		} //end if !instanceof
-		Tenant other = (Tenant) obj;
-		return this.apartmentNumber == other.getApartmentNumber() 
-				&& this.tenantName.equalsIgnoreCase(other.getTenantName());
-	} // End of the equals override
-
-
-	@Override
-	public int compareTo(Tenant o) {
-		int result = this.apartmentNumber - o.getApartmentNumber();
-		if (result < 0) {
-			return -1;
-		} //end if
-		else if (result > 0) {
-			return 1;
-		} //end else if
-		else {
-			return 0;
-		} //end else
-	} // End of the compareTo override
-
-
-	@Override
-	public String toString() {
-		return this.apartmentNumber + " " + this.tenantName;
-	} // End of the toString override
+	Tenant other = (Tenant) obj;
+	return this.apartmentNumber == other.getApartmentNumber() 
+		&& this.tenantName.equals(other.getTenantName());
+    } // End of the equals override
 
 } // End of the Tenant class.

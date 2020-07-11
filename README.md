@@ -2,12 +2,24 @@
 
 ## Features
 
-* Record finance data for apartment building.
-* Print apartment building finance reports.
-* Record incoming rent payments.
-* Record outgoing expense payments.
-* Specify expense budget categories.
-* Display annual summary report.
+#### Record data or print reports of the apartment building finances.  
+![Main Menu Screen](./images/MainMenuScreen.jpg)  
+![Input Data Screen](./images/InputDataScreen.jpg)  
+![Display Report Screen](./images/DisplayReportScreen.jpg)  
+#### Display a list of tenants living in the apartment building.  
+![Tenant List Screen](./images/TenantListScreen.jpg)  
+#### Display an income report of the rental payments from the tenants.  
+![Income Report Screen](./images/IncomeReportScreen.jpg)  
+#### Display an expense report with the expense payment categories.  
+![Expense Report Screen](./images/ExpenseReportScreen.jpg)  
+#### Display an annual summary report of the apartment building finances.  
+![Annual Summary Screen](./images/AnnualSummaryScreen.jpg)  
+#### Add a new tenant to the apartment building ledger.  
+![New Tenant Screen](./images/NewTenantScreen.jpg)  
+#### Record incoming rent payments from tenants.  
+![Rental Payment Screen](./images/RentalPaymentScreen.jpg)  
+#### Record expense payments and specify budget categories.  
+![Expense Payment Screen](./images/ExpensePaymentScreen.jpg)
 
 
 ## Technologies
@@ -20,31 +32,31 @@ Project was created with:
 
 ## Installing
 
-To clone this repo to your desktop, you will need to have Git installed on your computer. From your command line, clone this repository:
+To clone this repository to your desktop, you will need to have Git installed on your computer. From your command line, clone this repository:
 ```
-$ git clone https://github.com/jerrybelmonte/The-Innkeeper.git
+git clone https://github.com/jerrybelmonte/The-Innkeeper.git
 ```
-Verify that the process was successful. Go into the repository:
+Verify that the installation process was successful. Navigate into the repository:
 ```
-$ cd The-Innkeeper/
+cd The-Innkeeper/
 ```
 
 
 ## How To Use
 
 ### MacOSX
-If you are using a Mac, run the following terminal command from within the repository.
+If you are using a Mac, run the following terminal command from within the repository:
 ```
 java -jar InnKeeperDemo.jar
 ```
 
 ### Windows 10
-If you are using a Windows computer:
+If you are using a Windows 10 computer, start the program by:
 ```
-Double-click InnKeeperDemo.jar
+Double-clicking > InnKeeperDemo.jar
 ```
-
-_Note:_ A login window appears at the start of the program.
+_Note:_ At the start of the program a login screen pops up.  
+![Login Screen](./images/LoginScreen.jpg)
 
 
 ## Authors
